@@ -6,12 +6,12 @@ body
     margin: 0;
     width: 100%;
     height: 100%;
+    background-color: black;
 }
 #main
 {
-    width: 100%;
-    height: 100%;
-    background-color: black;
+    width: 100vw;
+    height: 56.25vw;
     background-image: url(img/main.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -20,14 +20,14 @@ body
 #hardModeButton
 {
     background-repeat: no-repeat;
-    background-size: contain;
-    width: 20.2%;
-    height: 6.7%;
+    width: 20.2vw;
+    height: 3.8vw;
     position: absolute;
-    top: 84%;
-    left: 71%;
+    top: 47.05vw;
+    left: 71vw;
     cursor: url(img/cursor.png) 10 2,pointer;
     background-size: 100% 100%;
+
 }
 .hardOn
 {
@@ -41,10 +41,10 @@ body
 #lootFrame
 {
     z-index: 2;
-    top: 57%;
-    left: 6.75%;
-    width: 27.35%;
-    height: 26.3%;
+    top: 32vw;
+    left: 6.75vw;
+    width: 27.35vw;
+    height: 14.7vw;
     background-image: url(img/loot_frame.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -55,25 +55,25 @@ body
 #lootPic
 {
     z-index: 0;
-    top: 57.1%;
-    left: 7.1%;
-    width: 26.75%;
-    height: 25.7%;
+    top: 32.1vw;
+    left: 7.1vw;
+    width: 26.75vw;
+    height: 14.5vw;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: absolute;
 }
 #lootName
 {
-    top: 83%;
-    left: 7%;
-    width: 26.7%;
-    height: 6.2%;
+    top: 46.7vw;
+    left: 7vw;
+    width: 26.7vw;
+    height: 3.5vw;
     text-align: center;
     display: block;
     color: transparent;
-    text-shadow: 0 0 1.5px rgb(228 89 88);
-    font-size: 3.2vh;
+    text-shadow: 0 0 0.1vw rgb(228 89 88);
+    font-size: 1.8vw;
     position: absolute;
     line-height: 200%;
     user-select: none;
@@ -140,30 +140,30 @@ body
 #primaryName
 {
     position: absolute;
-    width: 14.7%;
-    height: 4%;
-    top: 8.3%;
-    right: 7.8%;
+    width: 14.7vw;
+    height: 2.3vw;
+    top: 4.7vw;
+    right: 7.8vw;
     text-align: center;
     color: transparent;
-    text-shadow: 0 0 1.5px #411c1be6;
+    text-shadow: 0 0 0.1vw #411c1be6;
     font-size: 1.4vw;
-    line-height: 3.4vh;
+    line-height: 1.9vw;
     font-variant: all-small-caps;
     font-family: system-ui;
 }
 #primaryValue
 {
     position: absolute;
-    width: 14.7%;
-    height: 4.9%;
-    top: 12.2%;
-    right: 7.8%;
+    width: 14.7vw;
+    height: 2.8vw;
+    top: 6.9vw;
+    right: 7.8vw;
     text-align: center;
     color: transparent;
-    text-shadow: 0 0 1.5px #ffffffab;
+    text-shadow: 0 0 0.1vw #ffffffab;
     font-size: 1.4vw;
-    line-height: 4.5vh;
+    line-height: 2.5vw;
     font-variant: all-small-caps;
     font-family: system-ui;
     user-select: none;
@@ -171,30 +171,29 @@ body
 #setupContainer
 {
     position: absolute;
-    width: 26.5%;
-    height: 45%;
-    top: 10%;
-    left: 7.5%;
+    width: 26.5vw;
+    height: 25.3vw;
+    top: 5.6vw;
+    left: 7.5vw;
     border: 0px solid #ffffffab;
 }
 .setupCategory
 {
-    height: 10%;
+    height: 3vw;
     background-image: url(img/element.png);
     background-size: 100% 110%;
     padding-left: 0.5vw;
     cursor: url(img/cursor.png),pointer;
     color: transparent;
-    text-shadow: 0 0 1.5px #ffffffab;
+    text-shadow: 0 0 0.1vw #ffffffab;
     padding-top: 0px;
-    /* vertical-align: middle; */
-    margin-bottom: 1%;
+    margin-bottom: 0.3vw;
     position: relative;
 }
 .setupCategory:hover
 {
     background-color: #ffffffab;
-    text-shadow: 0 0 1.5px #000;
+    text-shadow: 0 0 0.1vw #000;
     transition: background-color 0.5s linear;
 }
 .setupCategory span
@@ -202,8 +201,8 @@ body
     color: inherit;
     text-shadow: inherit;
     padding-left: 1.8vw;
-    font-size: 1.4vw;
-    line-height: 4vh;
+    font-size: 1.5vw;
+    line-height: 3vw;
     font-variant: all-small-caps;
     font-family: system-ui;
     user-select: none;
@@ -213,10 +212,10 @@ body
 {
     cursor: url(img/cursor.png),pointer;
     color: transparent;
-    text-shadow: 0 0 1.5px #ffffffab;
-    height: 10%;
-    font-size: 1.4vw;
-    line-height: 4vh;
+    text-shadow: 0 0 0.1vw #ffffffab;
+    height: 3vw;
+    font-size: 1.5vw;
+    line-height: 3vw;
     font-variant: all-small-caps;
     font-family: system-ui;
 }
@@ -245,11 +244,11 @@ body
     outline: none;
     border: 0px;
     color: #827d7d;
-    font-size: 2.2vh;
-    width: 6vh;
+    font-size: 1.4vw;
+    width: 4vw;
     right: 5%;
     position: absolute;
-    top: 25%;
+    top: 0.8vw;
     border-radius: 25%;
 }
 .setupCategory:hover .playerCut, .setupCategory:hover .teamSize
@@ -259,21 +258,21 @@ body
 .moneyLimitLabel
 {
     position: absolute;
-    width: 14.7%;
-    height: 4%;
+    width: 14.7vw;
+    height: 2.3vw;
     text-align: center;
     color: transparent;
-    text-shadow: 0 0 1.5px #411c1be6;
+    text-shadow: 0 0 0.1vw #411c1be6;
     font-size: 1.4vw;
-    line-height: 3.4vh;
+    line-height: 1.9vw;
     font-variant: all-small-caps;
     font-family: system-ui;
 }
 .moneyLimit
 {
     position: absolute;
-    width: 14.7%;
-    height: 4%;
+    width: 14.7vw;
+    height: 2.8vw;
     text-align: center;
     color: transparent;
     text-shadow: 0 0 1.5px #f0eeef9c;
@@ -288,23 +287,23 @@ body
 }
 #cutLimitLabel
 {
-    top: 31.2%;
-    right: 7.95%;
+    top: 17.6vw;
+    right: 7.95vw;
 }
 #cutLimit
 {
-    top: 35.4%;
-    right: 7.95%;
+    top: 19.9vw;
+    right: 7.95vw;
 }
 #takeLimitLabel
 {
-    top: 19.8%;
-    right: 7.9%;
+    top: 11.1vw;
+    right: 7.9vw;
 }
 #takeLimit
 {
-    top: 24%;
-    right: 7.95%;
+    top: 13.3vw;
+    right: 7.95vw;
 }
 .error
 {
@@ -320,8 +319,8 @@ body
 {
     background-image: url(img/truck_off.png);
     background-size: 100% 100%;
-    width: 1.4%;
-    height: 3%;
+    width: 1.4vw;
+    height: 1.7vw;
     position: absolute;
     cursor: url(img/cursor.png),pointer;
 }
@@ -331,28 +330,28 @@ body
 }
 #truck1
 {
-    top: 21.4%;
-    left: 56.4%;
+    top: 12vw;
+    left: 56.4vw;
 }
 #truck2
 {
-    top: 23.4%;
-    left: 70.7%;
+    top: 13.2vw;
+    left: 70.7vw;
 }
 #truck3
 {
-    top: 43.8%;
-    left: 70.3%;
+    top: 24.6vw;
+    left: 70.3vw;
 }
 #truck4
 {
-    top: 47.2%;
-    left: 66.3%;
+    top: 26.6vw;
+    left: 66.3vw;
 }
 #truck5
 {
-    top: 68.7%;
-    left: 66.5%;
+    top: 38.6vw;
+    left: 66.5vw;
 }
 .invisibleTextarea
 {
@@ -363,9 +362,212 @@ body
     height: 2em;
     zIndex: -1;
 }
+#playerCutContainer
+{
+    background-image: url(img/player_cuts.png);
+    background-size: 100% 100%;
+    width: 23vw;
+    height: 10vw;
+    position: absolute;
+    top: 38vw;
+    left: 36vw;
+}
+#totalCut
+{
+    position: absolute;
+    top: 48vw;
+    right: 43vw;
+    color: transparent;
+    text-shadow: 0 0 1.5px #f0eeef9c;
+    font-size: 1.5vw;
+    line-height: 3.4vh;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+}
+.playerMoney
+{
+    color: transparent;
+    text-shadow: 0 0 0.1vw #ffffffab;
+    padding-left: 1.8vw;
+    font-size: 1.5vw;
+    line-height: 2.4vw;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    user-select: none;
+    pointer-events: none;
+    position: relative;
+}
+.playerMoney span:last-child
+{
+    right: 2vw;
+    position: absolute;
+    top: 0.2vw;
+}
+
+/* TUTORIAL OVERLAY STYLES */
+#overlay
+{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    background-color: #00000077;
+    transition: opacity 0.5s linear;
+}
+#overlayClickZone
+{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    cursor: url(img/cursor.png),pointer;
+}
+.arrowLeft:before
+{
+    border-color: #ff9800b0 #ff9800b0 #ff9800b0 transparent;
+    position: absolute;
+    left: -3vw;
+    top: 0.3vw;
+    content: "";
+    border-style: solid;
+    border-width: 0 0 1.5vw 2.5vw;
+}
+.arrowLeft:after
+{
+    border-color: #ff9800b0 #ff9800b0 #ff9800b0 transparent;
+    position: absolute;
+    left: -3vw;
+    top: 1.8vw;
+    content: "";
+    border-style: solid;
+    border-width: 1.5vw 0 0 2.5vw;
+}
+.arrowRight:before
+{
+    border-color: transparent transparent transparent #ff9800b0;
+    position: absolute;
+    right: -3vw;
+    top: 0.3vw;
+    content: "";
+    border-style: solid;
+    border-width: 1.5vw 0 0 2.5vw;
+}
+.arrowRight:after
+{
+    border-color: transparent transparent transparent #ff9800b0;
+    position: absolute;
+    right: -3vw;
+    top: 1.8vw;
+    content: "";
+    border-style: solid;
+    border-width: 0 0 1.5vw 2.5vw;
+}
+.selectPrimary
+{
+    top: 35vw;
+    left: 37vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    padding: 1vw;
+    font-size: 1.7vw;
+}
+.selectDifficulty
+{
+    top: 47.1vw;
+    right: 32vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    padding: 1vw;
+    font-size: 1.7vw;
+}
+.moneyDisplay
+{
+    top: 40.9vw;
+    left: 62vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    padding: 1vw;
+    font-size: 1.7vw;
+}
+.selectTruckLocation
+{
+    top: 25.7vw;
+    right: 37.1vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    padding: 1vw;
+    font-size: 1.7vw;
+}
+.enterTakeLimit
+{
+    top: 19.3vw;
+    right: 26.1vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    padding: 1vw;
+    font-size: 1.7vw;
+}
+.enterScoreLimit
+{
+    top: 13.1vw;
+    right: 26.1vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    padding: 1vw;
+    font-size: 1.7vw;
+}
+.primaryDisplay
+{
+    top: 6.5vw;
+    right: 26.1vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    padding: 1vw;
+    font-size: 1.7vw;
+}
+.setHeistOptions
+{
+    top: 7.2vw;
+    left: 37.1vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    padding: 1vw;
+    font-size: 1.7vw;
+}
+.calculateCuts
+{
+    top: 18.7vw;
+    left: 37.1vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    padding: 1vw;
+    font-size: 1.7vw;
+}
 </style>
 </head>
 <body>
+
+    <!-- TUTORIAL OVERLAY -->
+    <div id="overlay">
+        <div class="setHeistOptions arrowLeft">Set your options here.</div>
+        <div class="primaryDisplay arrowRight">Your primary loot price.</div>
+        <div class="enterScoreLimit arrowRight">Game limits how much heist can give in total.</div>
+        <div class="calculateCuts arrowLeft">Calculator needs player </br>cuts to maximize values.</div>
+        <div class="enterTakeLimit arrowRight">Same with player cut.</div>
+        <div class="selectTruckLocation arrowRight">Click any truck icon to select its location.</div>
+        <div class="selectPrimary arrowLeft">Select primary loot here.</div>
+        <div class="moneyDisplay arrowLeft">Your calculated heist take will be displayed here.</div>
+        <div class="selectDifficulty arrowRight">Toggle Normal or Hard Mode with this button.</div>
+        <div id="overlayClickZone"></div>
+    </div>
 
     <!-- PAGE BACKGROUND -->
     <div id="main"></div>
@@ -436,7 +638,7 @@ body
     <div id="lootPic"></div>
     <div id="lootName"></div>
     <div id="primaryName"></div>
-    <div id="primaryValue"></div>
+    <input id="primaryValue" type="text" class="moneyLimit"></div>
 
     <!-- TOTAL TAKE LIMIT -->
     <div id="takeLimitLabel" class="moneyLimitLabel">Total Take Limit</div>
@@ -455,8 +657,12 @@ body
 
     <!-- DISPLAY PLAYER CUT CALCULATOR -->
     <div id="playerCutContainer">
-
+        <div class="playerMoney"><span></span><span></span></div>
+        <div class="playerMoney"><span></span><span></span></div>
+        <div class="playerMoney"><span></span><span></span></div>
+        <div class="playerMoney"><span></span><span></span></div>
     </div>
+    <span id="totalCut"></span>
 
     <!-- COPY AND DOWNLOAD BUTTONS -->
     <div id="copyButton"></div>
@@ -474,10 +680,10 @@ let cayo =
     primary:
     [
         { name: "Minimadrazzo Files", price: 1000000, value: 4, className: "lootFiles" },
-        { name: "Sinsimito Tequilla", price: 900000, value: 0, className: "lootTequilla" },
-        { name: "Ruby Necklace", price: 1000000, value: 1, className: "lootNecklace" },
-        { name: "Bearer Bonds", price: 1100000, value: 2, className: "lootBonds" },
-        { name: "Pink Diamond", price: 1300000, value: 3, className: "lootDiamond" },
+        { name: "Sinsimito Tequilla", price: 900000*1.5, value: 0, className: "lootTequilla" },
+        { name: "Ruby Necklace", price: 1000000*1.5, value: 1, className: "lootNecklace" },
+        { name: "Bearer Bonds", price: 1100000*1.5, value: 2, className: "lootBonds" },
+        { name: "Pink Diamond", price: 1300000*1.5, value: 3, className: "lootDiamond" },
         { name: "Panther Statue", price: 1900000, value: 5, className: "lootPanther" }
     ],
     secondary:
@@ -490,7 +696,8 @@ let cayo =
     ],
     npcCutPercentage: 12,
     hardModeMultiplier: 1.1,
-    defaultCutLimit: 2550000,
+    defaultCutLimit: 4150000,
+    // defaultCutLimit: 2550000,
     defaultTakeLimit: 10818212
 }
 
@@ -500,8 +707,7 @@ let settings =
 {
     primary: 1, //cayo.primary.loot array id
     difficulty: "normal", //cayo.difficulty
-    vehicleValue: 0,
-    disruption: {}
+    vehicleValue: 0
 };
 
 /* FUNCTIONALITY */
@@ -519,14 +725,14 @@ function toggleHardMode(event)
         button.className = "hardOn";
         settings.difficulty = "hard";
         if (Number.isInteger(settings.primary.price))
-            primaryValue.textContent = (settings.primary.price * cayo.hardModeMultiplier).toLocaleString()
+            primaryValue.value = (settings.primary.price * cayo.hardModeMultiplier).toLocaleString()
     }
     else
     {
         button.className = "hardOff";
         settings.difficulty = "normal";
         if (Number.isInteger(settings.primary.price))
-            primaryValue.textContent = (settings.primary.price).toLocaleString()
+            primaryValue.value = (settings.primary.price).toLocaleString()
     }
 
     calculateTake();
@@ -555,7 +761,7 @@ function selectPrimaryLoot(lootName)
     document.querySelector("#lootPic").className = settings.primary.className;
     document.querySelector("#lootName").textContent = settings.primary.name;
     document.querySelector("#primaryName").textContent = settings.primary.name;
-    document.querySelector("#primaryValue").textContent = (settings.difficulty == "normal") ? settings.primary.price.toLocaleString() : (settings.primary.price * cayo.hardModeMultiplier).toLocaleString();;
+    document.querySelector("#primaryValue").value = (settings.difficulty == "normal") ? settings.primary.price.toLocaleString() : (settings.primary.price * cayo.hardModeMultiplier).toLocaleString();;
 
     calculateTake();
 }
@@ -644,6 +850,9 @@ function toggleVehicle(event)
         settings.vehicleValue += parseInt(event.target.getAttribute("bin"));
     }
 
+    if (settings.vehicleValue < 0)
+        settings.vehicleValue = 0;
+
     console.log(settings.vehicleValue);
 }
 document.querySelectorAll("#approachVehiclesContainer .setupCategory").forEach(function(vehicleElement)
@@ -716,7 +925,6 @@ document.querySelectorAll("#equipmentContainer .setupCategory").forEach(function
     weapon.addEventListener("click", markEquipment);
 });
 
-
 /* calculate loot values */
 
 /* reverses percentage from current value and known percentage */
@@ -771,12 +979,12 @@ function calculateTake()
     let topPlayerTake = calculateTopPlayerTake();
 
     //calculate full take based on highest percentage
-    let fullTake = reversePercentage(settings.cutLimit || cayo.defaultCutLimit, 100 - topPlayerTake);
+    let fullTake = Math.floor(reversePercentage(settings.cutLimit || cayo.defaultCutLimit, 100 - topPlayerTake));
+
     //exceeding limits means no money is received
-    if (fullTake > (settings.takeLimit || cayo.defaultTakeLimit))
-        document.querySelector("#takeLimit").classList.add("error");
-    else
-        document.querySelector("#takeLimit").classList.remove("error");
+    let actualLimit = (settings.takeLimit || cayo.defaultTakeLimit);
+    if (fullTake > actualLimit)
+        fullTake = actualLimit;
 
     let score = Math.floor(reversePercentage(fullTake, cayo.npcCutPercentage));
 
@@ -799,7 +1007,47 @@ function calculateTake()
         calculateGoldValue(singleBagLoad);
         calculatePaintingValue(singleBagLoad);
     }
+
+    let playerMonies = document.querySelectorAll(".playerMoney");
+    let takeContainers = document.querySelectorAll("#takeContainer .setupCategory.playerTake:not(.hidden)");
+    let numContainers = takeContainers.length;
+
+    for (var i = 0, l = 4; i < l; i++)
+    {
+        let playerMoni = playerMonies[i];
+        let playerName = playerMoni.querySelector("span:first-child");
+        let moniValue = playerMoni.querySelector("span:last-child");
+
+        let takeContainer = takeContainers[i];
+
+        if (i < numContainers)
+        {
+            let name = takeContainer.querySelector("span");
+            let percentage = parseInt(takeContainer.querySelector("input").value);
+            playerName.textContent = name.textContent;
+            moniValue.textContent = formatNumber(Math.floor(fullTake * (percentage * 0.01)).toString()).string;
+        }
+        else
+        {
+            playerName.textContent = "";
+            moniValue.textContent = "";
+        }
+    }
+
+    document.querySelector("#totalCut").textContent = formatNumber(fullTake.toString()).string;
+
+    //don't want to need this anymore but i might
+    // console.log("top player take", topPlayerTake);
+    // console.log("full take", fullTake);
+    // console.log("score", score);
+    // console.log("primary price", primaryPrice);
+    // console.log("primary minus pavel", primaryMinusPavel);
+    // console.log("score minus primary", scoreMinusPrimary);
+    // console.log("single bag load", singleBagLoad);
+    // console.log("gold value", settings.goldValue);
+    // console.log("painting value", settings.paintingValue);
 }
+
 /* set team size*/
 function teamSizeChange(event)
 {
@@ -852,13 +1100,19 @@ document.querySelectorAll("#takeContainer .setupCategory.playerTake input").forE
     input.addEventListener("input", updatePlayerTake);
 });
 
+function formatNumber(input)
+{
+    let number = input.replace(/[\D\s\._\-]+/g, "");
+    number = number ? parseInt(number, 10) : 0;
+    return {"string" : number.toLocaleString(), "int" : number};
+}
+
 /* team mate cut limit */
 function formatCutLimit(element)
 {
-    let input = element.value.replace(/[\D\s\._\-]+/g, "");
-    input = input ? parseInt(input, 10) : 0;
-    element.value = input.toLocaleString();
-    settings.cutLimit = input;
+    let number = formatNumber(element.value);
+    element.value = number.string;
+    settings.cutLimit = number.int;
 }
 function updateCutLimit(event)
 {
@@ -873,10 +1127,9 @@ formatCutLimit(cutLimit);
 /* total take hard limit */
 function formatTakeLimit(element)
 {
-    let input = element.value.replace(/[\D\s\._\-]+/g, "");
-    input = input ? parseInt(input, 10) : 0;
-    element.value = input.toLocaleString();
-    settings.takeLimit = input;
+    let number = formatNumber(element.value);
+    element.value = number.string;
+    settings.takeLimit = number.int;
 }
 function updateTakeLimit(event)
 {
@@ -914,6 +1167,24 @@ document.querySelectorAll(".truckIcon").forEach(function(truckElement)
     truckElement.addEventListener("click", selectSupplyTruckLocation);
 });
 
+/* edit primary value */
+function formatPrimaryPrice(element)
+{
+    let number = formatNumber(element.value);
+    element.value = number.string;
+    if (settings.difficulty == "hard")
+        settings.primary.price = Math.floor(number.int / cayo.hardModeMultiplier);
+    else
+        settings.primary.price = number.int;
+}
+function updatePrimaryPrive(event)
+{
+    formatPrimaryPrice(event.target);
+    calculateTake();
+}
+document.querySelector("#primaryValue").addEventListener("input", updatePrimaryPrive);
+
+
 /* generate stat.txt string */
 function generateStattext()
 {
@@ -922,9 +1193,9 @@ function generateStattext()
     s.push("131071");
 
     s.push("$MPx_H4CNF_BS_ENTR"); //TODO binary values for each entry point
-    s.push("63");
+    s.push(settings.vehicleValue.toString());
 
-    s.push("$MPx_H4CNF_BS_ENTR"); //TODO binary values for each support option
+    s.push("$MPx_H4CNF_BS_ABIL"); //TODO binary values for each support option
     s.push("63");
 
     if (settings.weaponID) //TODO suppressors are on by default, don't know where are those
@@ -1067,6 +1338,8 @@ function generateStattext()
 
 function download()
 {
+    calculateTake();
+
     //create data blob
     var blob = new Blob([generateStattext()], {type: 'text/csv'});
 
@@ -1088,6 +1361,8 @@ function download()
 
 function copyToClipboard()
 {
+    calculateTake();
+
     //create invisible textarea to copy
     var textArea = document.createElement("textarea");
     textArea.className = "invisibleTextarea";
@@ -1102,5 +1377,13 @@ function copyToClipboard()
     //remove witness
     document.body.removeChild(textArea);
 }
+
+function closeOverlay(event)
+{
+    let overlay = event.target.parentNode;
+    overlay.style.opacity = "0";
+    setTimeout(function() { overlay.parentNode.removeChild(overlay); }, 500);
+}
+document.querySelector("#overlayClickZone").addEventListener("click", closeOverlay);
 </script>
 </html>
