@@ -1099,25 +1099,26 @@ function getLootSize(loot)
 
     return size;
 }
+// different loot value for both normal and hard
 function calculateCashValue(bagLoad)
 {
-    settings.cashValue = Math.floor(bagLoad * getLootSize("cash"));
+    settings.cashValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("cash")) : Math.floor((bagLoad * getLootSize("cash")) / cayo.hardModeMultiplier);
 }
 function calculateCokeValue(bagLoad)
 {
-    settings.cokeValue = Math.floor(bagLoad * getLootSize("coke"));
+    settings.cokeValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("coke") : Math.floor((bagLoad * getLootSize("coke")) / cayo.hardModeMultiplier);
 }
 function calculateGoldValue(bagLoad)
 {
-    settings.goldValue = Math.floor(bagLoad * getLootSize("gold"));
+    settings.goldValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("gold") : Math.floor((bagLoad * getLootSize("gold")) / cayo.hardModeMultiplier);
 }
 function calculatePaintingValue(bagLoad)
 {
-    settings.paintingValue = Math.floor(bagLoad * getLootSize("painting"));
+    settings.paintingValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("painting") : Math.floor((bagLoad * getLootSize("painting")) / cayo.hardModeMultiplier);
 }
 function calculateWeedgValue(bagLoad)
 {
-    settings.weedValue = Math.floor(bagLoad * getLootSize("weed"));
+    settings.weedValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("weed") : Math.floor((bagLoad * getLootSize("weed")) / cayo.hardModeMultiplier);
 }
 
 
@@ -1158,7 +1159,7 @@ function calculateTake()
     //end ugly
 
     //pretty now again
-    let primaryMinusPavel = Math.floor((primaryPrice * (100 - cayo.npcCutPercentage) * 0.01));
+    // let primaryMinusPavel = Math.floor((primaryPrice * (100 - cayo.npcCutPercentage) * 0.01));
     let scoreMinusPrimary = Math.floor(score - primaryPrice);
 
     let playerCount = parseInt(document.querySelector("#teamsize .teamSize").value);
@@ -1175,7 +1176,7 @@ function calculateTake()
         if (settings.islandLoot == "gold" || settings.compoundLoot == "gold")
             calculateGoldValue(singleBagLoad);
 
-        if (settings.islandLoot == "painting" || settings.compoundLoot == "painting")
+        if (settings.painting || settings.painting)
             calculatePaintingValue(singleBagLoad);
 
         if (settings.islandLoot == "weed" || settings.compoundLoot == "weed")
@@ -1211,15 +1212,15 @@ function calculateTake()
     document.querySelector("#totalCut").textContent = formatNumber(fullTake.toString()).string;
 
     //don't want to need this anymore but i might
-    // console.log("top player take", topPlayerTake);
-    // console.log("full take", fullTake);
-    // console.log("score", score);
-    // console.log("primary price", primaryPrice);
+    console.log("top player take", topPlayerTake);
+    console.log("full take", fullTake);
+    console.log("score", score);
+    console.log("primary price", primaryPrice);
     // console.log("primary minus pavel", primaryMinusPavel);
-    // console.log("score minus primary", scoreMinusPrimary);
-    // console.log("single bag load", singleBagLoad);
-    // console.log("gold value", settings.goldValue);
-    // console.log("painting value", settings.paintingValue);
+    console.log("score minus primary", scoreMinusPrimary);
+    console.log("single bag load", singleBagLoad);
+    console.log("gold value", settings.goldValue);
+    console.log("painting value", settings.paintingValue);
 }
 
 /* set team size*/
@@ -1604,7 +1605,10 @@ function closeOverlay(event)
 {
     let overlay = event.target.parentNode;
     overlay.style.opacity = "0";
-    setTimeout(function() { overlay.parentNode.removeChild(overlay); }, 500);
+    try
+    {
+        setTimeout(function() { overlay.parentNode.removeChild(overlay); }, 500);
+    } catch {}
 }
 document.querySelector("#overlayClickZone").addEventListener("click", closeOverlay);
 </script>
