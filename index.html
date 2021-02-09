@@ -152,6 +152,7 @@ body
     line-height: 1.9vw;
     font-variant: all-small-caps;
     font-family: system-ui;
+    user-select: none;
 }
 #primaryValue
 {
@@ -219,6 +220,7 @@ body
     line-height: 3vw;
     font-variant: all-small-caps;
     font-family: system-ui;
+    user-select: none;
 }
 .checkbox
 {
@@ -290,6 +292,7 @@ body
 {
     top: 17.6vw;
     right: 7.95vw;
+    user-select: none;
 }
 #cutLimit
 {
@@ -300,6 +303,7 @@ body
 {
     top: 11.1vw;
     right: 7.9vw;
+    user-select: none;
 }
 #takeLimit
 {
@@ -384,6 +388,7 @@ body
     line-height: 2.8vw;
     font-variant: all-small-caps;
     font-family: system-ui;
+    user-select: none;
 }
 .playerMoney
 {
@@ -404,7 +409,68 @@ body
     position: absolute;
     top: 0.2vw;
 }
-
+#stattextContainer
+{
+    top: 53.2vw;
+    left: 29.4vw;
+    position: absolute;
+    user-select: none;
+}
+#stattextContainer div
+{
+    display: inline-block;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #e45958ab;
+    padding-left: 1.8vw;
+    font-size: 1.5vw;
+    line-height: 2vw;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    text-align: center;
+    padding: 0 0vw 0.25vw 1vw;
+}
+.statTextButton
+{
+    border: 0.2vw solid #8e3232;
+    border-radius: 0.2vw;
+    /* margin: 0vw 1vw 0vw 0vw; */
+    cursor: url(img/cursor.png),pointer;
+}
+.statTextButton:after
+{
+    top: -0.9vw;
+    right: -0.1vw;
+    position: relative;
+    content: "☑";
+    pointer-events: none;
+    opacity: 0;
+    font-size: 1.5vw;
+}
+.appear:after
+{
+    opacity: 1;
+}
+.fadeOut:after
+{
+    transition: opacity 3s ease-in;
+}
+.statTextViewer
+{
+    position: absolute;
+    top: 2.5vw;
+    left: 25vw;
+    width: 50vw;
+    height: 50vw;
+    background-color: black;
+    color: #f0eeef9c;
+    white-space: pre-wrap;
+    z-index: 3;
+    border: 0.3vw solid #aa4241bd;
+    overflow-y: scroll;
+    padding: 2vw;
+    line-height: 1.5vw;
+    font-size: 1vw;
+}
 /* TUTORIAL OVERLAY STYLES */
 #overlay
 {
@@ -414,6 +480,7 @@ body
     z-index: 1;
     background-color: #00000077;
     transition: opacity 0.5s linear;
+    user-select: none;
 }
 #overlayClickZone
 {
@@ -552,12 +619,22 @@ body
     padding: 1vw;
     font-size: 1.7vw;
 }
+.statTextOperations
+{
+    top: 52.7vw;
+    left: 70.5vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    padding: 1vw;
+    font-size: 1.7vw;
+}
 </style>
 </head>
 <body>
 
     <!-- TUTORIAL OVERLAY -->
-    <div id="overlay">
+    <div id="overlay" style="display: none;">
         <div class="setHeistOptions arrowLeft">Set your options here.</div>
         <div class="primaryDisplay arrowRight">Your primary loot price.</div>
         <div class="enterScoreLimit arrowRight">Game limits how much heist can give in total.</div>
@@ -567,6 +644,7 @@ body
         <div class="selectPrimary arrowLeft">Select primary loot here.</div>
         <div class="moneyDisplay arrowLeft">Your calculated heist take will be displayed here.</div>
         <div class="selectDifficulty arrowRight">Toggle Normal or Hard Mode with this button.</div>
+        <div class="statTextOperations arrowLeft">Export your stat.txt and place it</br>next to gtahaxui.exe.</div>
         <div id="overlayClickZone"></div>
     </div>
 
@@ -580,6 +658,8 @@ body
             <div id="weaponCategory" class="setupCategory"><div class="checkbox"></div><span>Weapons</span></div>
             <div id="disruptionCategory" class="setupCategory"><div class="checkbox"></div><span>Disruption</span></div>
             <div id="equipmentCategory" class="setupCategory"><div class="checkbox"></div><span>Equipment</span></div>
+            <div id="islandLootCategory" class="setupCategory"><div class="checkbox"></div><span>Island Loot</span></div>
+            <div id="compoundLootCategory" class="setupCategory"><div class="checkbox"></div><span>Compound Loot</span></div>
             <div id="takeCategory" class="setupCategory"><div class="checkbox"></div><span>Player Take Calculator</span></div>
         </div>
         <div id="approachVehiclesContainer" class="setupCategoryContainer hidden">
@@ -611,6 +691,21 @@ body
             <div id="equipmentBoltcutters" class="setupCategory"><div class="checkbox"></div><span>Bolt Cutter</span></div>
             <div id="equipmentUniform" class="setupCategory"><div class="checkbox"></div><span>Uniform</span></div>
             <div id="equipmentGrappling" class="setupCategory"><div class="checkbox"></div><span>Grappling Hook</span></div>
+        </div>
+        <div id="islandLootContainer" class="setupCategoryContainer hidden">
+            <div class="backButton"> &lt; Island Loot</div>
+            <div id="islandLootCash" class="setupCategory"><div class="checkbox"></div><span>Cash</span></div>
+            <div id="islandLootCoke" class="setupCategory"><div class="checkbox"></div><span>Coke</span></div>
+            <div id="islandLootGold" class="setupCategory"><div class="checkbox"></div><span>Gold</span></div>
+            <div id="islandLootWeed" class="setupCategory"><div class="checkbox"></div><span>Weed</span></div>
+        </div>
+        <div id="compoundLootContainer" class="setupCategoryContainer hidden">
+            <div class="backButton"> &lt; Compund Loot</div>
+            <div id="compoundLootCash" class="setupCategory"><div class="checkbox"></div><span>Cash</span></div>
+            <div id="compoundLootCoke" class="setupCategory"><div class="checkbox"></div><span>Coke</span></div>
+            <div id="compoundLootGold" class="setupCategory"><div class="checkbox"></div><span>Gold</span></div>
+            <div id="compoundLootPainting" class="setupCategory"><div class="checkbox"></div><span>Painting</span></div>
+            <div id="compoundLootWeed" class="setupCategory"><div class="checkbox"></div><span>Weed</span></div>
         </div>
         <div id="takeContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Player Take Calculator</div>
@@ -666,9 +761,12 @@ body
     <span id="totalCut"></span>
 
     <!-- COPY AND DOWNLOAD BUTTONS -->
-    <div id="copyButton"></div>
-    <div id="downloadButton"></div>
-    <div id="showButton"></div>
+    <div id="stattextContainer">
+        <div id="stattextLabel">stat.txt:</div>
+        <div id="copyButton" class="statTextButton">copy to clipboard</div>
+        <div id="downloadButton" class="statTextButton">download</div>
+        <div id="showButton" class="statTextButton">display</div>
+    </div>
 
     <!-- HARD MODE INDICATOR -->
     <div id="hardModeButton" class="hardOff"></div>
@@ -838,7 +936,6 @@ document.querySelectorAll(".backButton").forEach(function(button)
 /* unlock vehicles */
 function toggleVehicle(event)
 {
-    console.log(event.target);
     var checkbox = event.target.querySelector(".checkbox");
     if (checkbox.classList.contains("checked"))
     {
@@ -853,8 +950,6 @@ function toggleVehicle(event)
 
     if (settings.vehicleValue < 0)
         settings.vehicleValue = 0;
-
-    console.log(settings.vehicleValue);
 }
 document.querySelectorAll("#approachVehiclesContainer .setupCategory").forEach(function(vehicleElement)
 {
@@ -863,7 +958,7 @@ document.querySelectorAll("#approachVehiclesContainer .setupCategory").forEach(f
 
 /* unlock equipment */
 //all on by default
-//TODO maybe: customize
+//TODO maybe: customize locations n shits
 
 /* select weapon */
 function selectWeapon(event)
@@ -901,9 +996,9 @@ function markDisruption(event)
         event.target.querySelector(".checkbox").classList.add("checked");
     }
 }
-document.querySelectorAll("#disruptionContainer .setupCategory").forEach(function(weapon)
+document.querySelectorAll("#disruptionContainer .setupCategory").forEach(function(disruption)
 {
-    weapon.addEventListener("click", markDisruption);
+    disruption.addEventListener("click", markDisruption);
 });
 
 /* select equipment */
@@ -919,11 +1014,67 @@ function markEquipment(event)
         settings[event.target.id.replace("equipment", "").toLowerCase() + "Equipment"] = true;
         event.target.querySelector(".checkbox").classList.add("checked");
     }
-    console.log(settings);
 }
-document.querySelectorAll("#equipmentContainer .setupCategory").forEach(function(weapon)
+document.querySelectorAll("#equipmentContainer .setupCategory").forEach(function(equip)
 {
-    weapon.addEventListener("click", markEquipment);
+    equip.addEventListener("click", markEquipment);
+});
+
+/* mark island loot */
+function markIslandLoot(event)
+{
+    if (event.target.querySelector(".checkbox").classList.contains("checked"))
+    {
+        event.target.querySelector(".checkbox").classList.remove("checked");
+        delete settings.islandLoot;
+    }
+    else
+    {
+        settings.islandLoot = event.target.id.replace("islandLoot", "").toLowerCase();
+        document.querySelectorAll("#islandLootContainer .setupCategory").forEach(function(islandLoot)
+        {
+            islandLoot.querySelector(".checkbox").classList.remove("checked");
+        });
+        event.target.querySelector(".checkbox").classList.add("checked");
+    }
+}
+document.querySelectorAll("#islandLootContainer .setupCategory").forEach(function(islandLoot)
+{
+    islandLoot.addEventListener("click", markIslandLoot);
+});
+
+/* mark compound loot */
+function markCompoundLoot(event)
+{
+    if (event.target.querySelector(".checkbox").classList.contains("checked"))
+    {
+        event.target.querySelector(".checkbox").classList.remove("checked");
+
+        if (event.target.id == "compoundLootPainting") //painting is a special case
+            delete settings.painting;
+        else
+            delete settings.compoundLoot;
+    }
+    else
+    {
+        if (event.target.id != "compoundLootPainting") //painting is a special case
+        {
+            settings.compoundLoot = event.target.id.replace("compoundLoot", "").toLowerCase();
+            document.querySelectorAll("#compoundLootContainer .setupCategory:not(#compoundLootPainting)").forEach(function(compoundLoot)
+            {
+                compoundLoot.querySelector(".checkbox").classList.remove("checked");
+            });
+        }
+        else
+        {
+            settings.painting = true;
+        }
+        event.target.querySelector(".checkbox").classList.add("checked");
+    }
+}
+document.querySelectorAll("#compoundLootContainer .setupCategory").forEach(function(compoundLoot)
+{
+    compoundLoot.addEventListener("click", markCompoundLoot);
 });
 
 /* calculate loot values */
@@ -948,6 +1099,14 @@ function getLootSize(loot)
 
     return size;
 }
+function calculateCashValue(bagLoad)
+{
+    settings.cashValue = Math.floor(bagLoad * getLootSize("cash"));
+}
+function calculateCokeValue(bagLoad)
+{
+    settings.cokeValue = Math.floor(bagLoad * getLootSize("coke"));
+}
 function calculateGoldValue(bagLoad)
 {
     settings.goldValue = Math.floor(bagLoad * getLootSize("gold"));
@@ -956,6 +1115,11 @@ function calculatePaintingValue(bagLoad)
 {
     settings.paintingValue = Math.floor(bagLoad * getLootSize("painting"));
 }
+function calculateWeedgValue(bagLoad)
+{
+    settings.weedValue = Math.floor(bagLoad * getLootSize("weed"));
+}
+
 
 function calculateTopPlayerTake()
 {
@@ -1002,11 +1166,20 @@ function calculateTake()
 
     if (singleBagLoad) //might be undefined when no primary selected, we don't want 'undefined' in settings
     {
-        if (!settings.secondary)
-            settings.secondary = [];
+        if (settings.islandLoot == "cash" || settings.compoundLoot == "cash")
+            calculateCashValue(singleBagLoad);
 
-        calculateGoldValue(singleBagLoad);
-        calculatePaintingValue(singleBagLoad);
+        if (settings.islandLoot == "coke" || settings.compoundLoot == "coke")
+            calculateCokeValue(singleBagLoad);
+
+        if (settings.islandLoot == "gold" || settings.compoundLoot == "gold")
+            calculateGoldValue(singleBagLoad);
+
+        if (settings.islandLoot == "painting" || settings.compoundLoot == "painting")
+            calculatePaintingValue(singleBagLoad);
+
+        if (settings.islandLoot == "weed" || settings.compoundLoot == "weed")
+            calculateWeedValue(singleBagLoad);
     }
 
     let playerMonies = document.querySelectorAll(".playerMoney");
@@ -1257,27 +1430,25 @@ function generateStattext()
     s.push("$MPx_H4CNF_APPROACH");
     s.push("-1");
 
-    //disable all other loot
+    //secondary loot enabled or not
     s.push("$MPx_H4LOOT_CASH_I");
-    s.push("0");
+    s.push(settings.islandLoot == "cash" ? "-1" : "0");
     s.push("$MPx_H4LOOT_CASH_C");
-    s.push("0");
+    s.push(settings.compoundLoot == "cash" ? "-1" : "0");
     s.push("$MPx_H4LOOT_WEED_I");
-    s.push("0");
+    s.push(settings.islandLoot == "weed" ? "-1" : "0");
     s.push("$MPx_H4LOOT_WEED_C");
-    s.push("0");
+    s.push(settings.compoundLoot == "weed" ? "-1" : "0");
     s.push("$MPx_H4LOOT_COKE_I");
-    s.push("0");
+    s.push(settings.islandLoot == "coke" ? "-1" : "0");
     s.push("$MPx_H4LOOT_COKE_C");
-    s.push("0");
+    s.push(settings.compoundLoot == "coke" ? "-1" : "0");
     s.push("$MPx_H4LOOT_GOLD_I");
-    s.push("0");
-
-    //enable gold and paintings
+    s.push(settings.islandLoot == "gold" ? "-1" : "0");
     s.push("$MPx_H4LOOT_GOLD_C");
-    s.push("-1");
+    s.push(settings.compoundLoot == "gold" ? "-1" : "0");
     s.push("$MPx_H4LOOT_PAINT");
-    s.push("-1");
+    s.push(settings.painting ? "-1" : "0");
 
     //set difficulty
     s.push("$MPx_H4_PROGRESS");
@@ -1300,33 +1471,25 @@ function generateStattext()
         s.push(settings.paintingValue.toString());
     }
 
-    //disable all scopes except gold and painting inside compound
+    //secondary loot scoped or not
     s.push("$MPx_H4LOOT_CASH_I_SCOPED");
-    s.push("0");
+    s.push(settings.islandLoot == "cash" ? "-1" : "0");
     s.push("$MPx_H4LOOT_CASH_C_SCOPED");
-    s.push("0");
+    s.push(settings.compoundLoot == "cash" ? "-1" : "0");
     s.push("$MPx_H4LOOT_WEED_I_SCOPED");
-    s.push("0");
+    s.push(settings.islandLoot == "weed" ? "-1" : "0");
     s.push("$MPx_H4LOOT_WEED_C_SCOPED");
-    s.push("0");
+    s.push(settings.compoundLoot == "weed" ? "-1" : "0");
     s.push("$MPx_H4LOOT_COKE_I_SCOPED");
-    s.push("0");
+    s.push(settings.islandLoot == "coke" ? "-1" : "0");
     s.push("$MPx_H4LOOT_COKE_C_SCOPED");
-    s.push("0");
+    s.push(settings.compoundLoot == "coke" ? "-1" : "0");
     s.push("$MPx_H4LOOT_GOLD_I_SCOPED");
-    s.push("0");
-
-    if (settings.goldValue)//set gold as scoped everywhere inside compound
-    {
-        s.push("$MPx_H4LOOT_GOLD_C_SCOPED");
-        s.push("-1");
-    }
-
-    if (settings.paintingValue)//set paintings as scoped
-    {
-        s.push("$MPx_H4LOOT_PAINT_SCOPED");
-        s.push("-1");
-    }
+    s.push(settings.islandLoot == "gold" ? "-1" : "0");
+    s.push("$MPx_H4LOOT_GOLD_C_SCOPED");
+    s.push(settings.compoundLoot == "gold" ? "-1" : "0");
+    s.push("$MPx_H4LOOT_PAINT_SCOPED");
+    s.push(settings.painting ? "-1" : "0");
 
     //no idea what this does, can guess by the name though
     s.push("$MPx_H4_MISSIONS");
@@ -1337,7 +1500,7 @@ function generateStattext()
     return s.join("\n");
 }
 
-function download()
+function downloadTxt()
 {
     calculateTake();
 
@@ -1378,7 +1541,65 @@ function copyToClipboard()
     //remove witness
     document.body.removeChild(textArea);
 }
+/* do something with stat.txt buttons */
+function fadeDatShiet(element)
+{
+    element.classList.add("appear");
+    element.classList.remove("fadeOut");
+    setTimeout(function(element){element.classList.add("appear");}, 0, element);
+    setTimeout(function(element)
+    {
+        element.classList.add("fadeOut");
+        element.classList.remove("appear");
+    }, 0, element);
+}
 
+function copyButton(event)
+{
+    copyToClipboard();
+    let button = document.querySelector("#copyButton");
+    fadeDatShiet(button);
+}
+document.querySelector("#copyButton").addEventListener("click", copyButton);
+
+function downloadButton(event)
+{
+    downloadTxt();
+    let button = document.querySelector("#downloadButton");
+    fadeDatShiet(button);
+}
+document.querySelector("#downloadButton").addEventListener("click", downloadButton);
+
+function showButton(event)
+{
+    calculateTake();
+
+    let div = document.createElement("div");
+    div.className = "statTextViewer";
+    div.textContent = generateStattext();
+
+    let overlay = document.createElement("div");
+    overlay.id = "textViewOverlay";
+    overlay.style.backgroundColor = "#00000077";
+    overlay.style.zIndex = "2";
+    overlay.style.position = "absolute";
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
+    overlay.style.cursor = "url(img/cursor.png),pointer";
+
+    overlay.addEventListener("click", function(event)
+    {
+        let viewer = document.querySelector(".statTextViewer");
+        viewer.parentNode.removeChild(viewer);
+        let overlay = document.querySelector("#textViewOverlay");
+        overlay.parentNode.removeChild(overlay);
+    });
+
+    document.body.appendChild(overlay);
+    document.body.appendChild(div);
+}
+document.querySelector("#showButton").addEventListener("click", showButton);
+/* close overlay on click */
 function closeOverlay(event)
 {
     let overlay = event.target.parentNode;
