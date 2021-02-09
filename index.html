@@ -4,9 +4,10 @@
 body
 {
     margin: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: black;
+    overflow: hidden;
 }
 #main
 {
@@ -380,7 +381,7 @@ body
     color: transparent;
     text-shadow: 0 0 1.5px #f0eeef9c;
     font-size: 1.5vw;
-    line-height: 3.4vh;
+    line-height: 2.8vw;
     font-variant: all-small-caps;
     font-family: system-ui;
 }
@@ -407,18 +408,18 @@ body
 /* TUTORIAL OVERLAY STYLES */
 #overlay
 {
-    width: 100%;
-    height: 100%;
-    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
     z-index: 1;
     background-color: #00000077;
     transition: opacity 0.5s linear;
 }
 #overlayClickZone
 {
-    width: 100%;
-    height: 100%;
-    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
     cursor: url(img/cursor.png),pointer;
 }
 .arrowLeft:before
