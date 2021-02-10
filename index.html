@@ -802,7 +802,7 @@ let cayo =
 {
     primary:
     [
-        { name: "Minimadrazzo Files", price: 1000000, value: 4, className: "lootFiles" },
+        { name: "Minimadrazzo Files", price: 1100000, value: 4, className: "lootFiles" },
         { name: "Sinsimito Tequilla", price: 900000*1.5, value: 0, className: "lootTequilla" },
         { name: "Ruby Necklace", price: 1000000*1.5, value: 1, className: "lootNecklace" },
         { name: "Bearer Bonds", price: 1100000*1.5, value: 2, className: "lootBonds" },
@@ -1193,7 +1193,7 @@ function calculateTake()
     //add pavel cut for total money
     let score = Math.floor(reversePercentage(fullTake, cayo.npcCutPercentage));
 
-    // calculate primary price if hard mode on
+    // calculate primary price if hard mode is on or minimadrazzo files are selected(no fencing fee)
     let primaryPrice = 0;
     if (settings.primary) //i did it with shorthand if at first but was very ugly and i didn't like to look at it
     {
@@ -1201,13 +1201,14 @@ function calculateTake()
             primaryPrice = Math.floor(settings.primary.price * cayo.hardModeMultiplier);
         else
             primaryPrice = settings.primary.price;
+
+        if (settings.primary.value == 4)
+            score = Math.floor(reversePercentage(fullTake, 2));
     }
 
     // let primaryMinusPavel = Math.floor((primaryPrice * ((100 - cayo.npcCutPercentage) * 0.01)));
     let scoreMinusPrimary = Math.floor(score - primaryPrice);
     // let scoreMinusPrimary = Math.floor(reversePercentage(Math.floor(fullTake - primaryPrice), cayo.npcCutPercentage));
-    console.log(score/4150000);
-    console.log(score);
 
     let playerCount = parseInt(document.querySelector("#teamsize .teamSize").value);
     let singleBagLoad = scoreMinusPrimary / playerCount;
@@ -1259,16 +1260,16 @@ function calculateTake()
     document.querySelector("#totalCut").textContent = formatNumber(fullTake.toString()).string;
 
     //don't want to need this anymore but i might
-    console.log("max take", settings.cutLimit || cayo.defaultCutLimit);
-    console.log("top player take", topPlayerTake);
-    console.log("full take", fullTake);
-    console.log("score", score);
-    console.log("primary price", primaryPrice);
-    // console.log("primary minus pavel", primaryMinusPavel);
-    console.log("score minus primary", scoreMinusPrimary);
-    console.log("single bag load", singleBagLoad);
-    console.log("gold value", settings.goldValue);
-    console.log("painting value", settings.paintingValue);
+    // console.log("max take", settings.cutLimit || cayo.defaultCutLimit);
+    // console.log("top player take", topPlayerTake);
+    // console.log("full take", fullTake);
+    // console.log("score", score);
+    // console.log("primary price", primaryPrice);
+    // // console.log("primary minus pavel", primaryMinusPavel);
+    // console.log("score minus primary", scoreMinusPrimary);
+    // console.log("single bag load", singleBagLoad);
+    // console.log("gold value", settings.goldValue);
+    // console.log("painting value", settings.paintingValue);
 }
 
 /* set team size*/
