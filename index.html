@@ -441,7 +441,7 @@ body
     top: -0.9vw;
     right: -0.1vw;
     position: relative;
-    content: "☑";
+    content: "✔";
     pointer-events: none;
     opacity: 0;
     font-size: 1.5vw;
@@ -480,6 +480,18 @@ body
     height: 100vh;
     cursor: url(img/cursor.png),pointer;
 }
+#elRubioSafe
+{
+    position: absolute;
+    font-size: 1.5vw;
+    top: 17.6vw;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #411c1be6;
+    padding-left: 1vw;
+    right: 8.5vw;
+    cursor: url(img/cursor.png),pointer;
+}
+
 /* TUTORIAL OVERLAY STYLES */
 #overlay
 {
@@ -490,6 +502,10 @@ body
     background-color: #00000077;
     transition: opacity 0.5s linear;
     user-select: none;
+}
+#overlay div
+{
+    padding: 0.5vw 1vw 0.5vw 1vw
 }
 #overlayClickZone
 {
@@ -545,7 +561,6 @@ body
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
-    padding: 1vw;
     font-size: 1.7vw;
 }
 .selectDifficulty
@@ -555,7 +570,6 @@ body
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
-    padding: 1vw;
     font-size: 1.7vw;
 }
 .moneyDisplay
@@ -565,7 +579,6 @@ body
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
-    padding: 1vw;
     font-size: 1.7vw;
 }
 .selectTruckLocation
@@ -575,7 +588,6 @@ body
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
-    padding: 1vw;
     font-size: 1.7vw;
 }
 .enterTakeLimit
@@ -585,7 +597,6 @@ body
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
-    padding: 1vw;
     font-size: 1.7vw;
 }
 .enterScoreLimit
@@ -595,7 +606,15 @@ body
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
-    padding: 1vw;
+    font-size: 1.7vw;
+}
+.selectSafe
+{
+    top: 16.5vw;
+    right: 13vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
     font-size: 1.7vw;
 }
 .primaryDisplay
@@ -605,7 +624,6 @@ body
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
-    padding: 1vw;
     font-size: 1.7vw;
 }
 .setHeistOptions
@@ -615,7 +633,6 @@ body
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
-    padding: 1vw;
     font-size: 1.7vw;
 }
 .calculateCuts
@@ -625,7 +642,6 @@ body
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
-    padding: 1vw;
     font-size: 1.7vw;
 }
 .selectLoot
@@ -635,7 +651,6 @@ body
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
-    padding: 1vw;
     font-size: 1.7vw;
 }
 .statTextOperations
@@ -645,7 +660,6 @@ body
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
-    padding: 1vw;
     font-size: 1.7vw;
 }
 </style>
@@ -657,10 +671,11 @@ body
         <div class="setHeistOptions arrowLeft">Set your options here.</div>
         <div class="primaryDisplay arrowRight">Your primary loot price.</div>
         <div class="enterScoreLimit arrowRight">Game limits how much heist can give in total.</div>
+        <div class="selectSafe arrowRight">Include El Rubio's safe by default. Disable if you skip office safe.</div>
         <div class="calculateCuts arrowLeft">Calculator needs player </br>cuts to maximize values.</div>
         <div class="selectLoot arrowLeft">Select secondary loot.</div>
         <div class="enterTakeLimit arrowRight">Player cut has limit too.</br>Also this is how much</br>highest % cut player will</br> get.</div>
-        <div class="selectTruckLocation arrowRight">Click any truck icon to select its location.</div>
+        <div class="selectTruckLocation arrowLeft">Click any truck icon to select its location.</div>
         <div class="selectPrimary arrowLeft">Click to open loot selector, click to select primary loot.</div>
         <div class="moneyDisplay arrowLeft">Your calculated heist take will be displayed here.</div>
         <div class="selectDifficulty arrowRight">Toggle Normal or Hard Mode with this button.</div>
@@ -705,6 +720,7 @@ body
             <div id="disruptionWeapons" class="setupCategory"><div class="checkbox"></div><span>Weapons</span></div>
             <div id="disruptionArmor" class="setupCategory"><div class="checkbox"></div><span>Armor</span></div>
             <div id="disruptionAirSupport" class="setupCategory"><div class="checkbox"></div><span>Air Support</span></div>
+            <div id="disruptionPoison" class="setupCategory"><div class="checkbox"></div><span>Poison Guards</span></div>
         </div>
         <div id="equipmentContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Equipment</div>
@@ -764,6 +780,9 @@ body
     <div id="cutLimitLabel" class="moneyLimitLabel">Cut Limit</div>
     <input id="cutLimit" type="text" class="moneyLimit"></div>
 
+    <!-- el rubio safe -->
+    <div id="elRubioSafe">☑</div>
+
     <!-- DISPLAY TRUCK ICONS -->
     <div id="truck1" class="truckIcon"></div>
     <div id="truck2" class="truckIcon"></div>
@@ -821,7 +840,8 @@ let cayo =
     hardModeMultiplier: 1.1,
     defaultCutLimit: 4150000,
     // defaultCutLimit: 2550000,
-    defaultTakeLimit: 10818212
+    defaultTakeLimit: 10818212,
+    officeSafeMax: 150000
 }
 
 /* USER SET SETTINGS */
@@ -830,7 +850,8 @@ let settings =
 {
     primary: 1, //cayo.primary.loot array id
     difficulty: "normal", //cayo.difficulty
-    vehicleValue: 0
+    vehicleValue: 0,
+    takeOfficeSafe: true
 };
 
 /* FUNCTIONALITY */
@@ -1202,8 +1223,12 @@ function calculateTake()
         else
             primaryPrice = settings.primary.price;
 
-        if (settings.primary.value == 4)
-            score = Math.floor(reversePercentage(fullTake, 2));
+        if (settings.takeOfficeSafe)
+            primaryPrice += cayo.officeSafeMax;
+
+        // i assumed that minimadrazzo files == no fencing fee, but apparently it's not true
+        // if (settings.primary.value == 4)
+        //     score = Math.floor(reversePercentage(fullTake, 2));
     }
 
     // let primaryMinusPavel = Math.floor((primaryPrice * ((100 - cayo.npcCutPercentage) * 0.01)));
@@ -1212,6 +1237,10 @@ function calculateTake()
 
     let playerCount = parseInt(document.querySelector("#teamsize .teamSize").value);
     let singleBagLoad = scoreMinusPrimary / playerCount;
+
+    //reduce by max office value
+    // let safeMax = Math.ceil(reversePercentage((settings.takeOfficeSafe ? (cayo.officeSafeMax / playerCount) : 0), cayo.npcCutPercentage));
+    // singleBagLoad -= safeMax;
 
     if (singleBagLoad) //might be undefined when no primary selected, we don't want 'undefined' in settings
     {
@@ -1260,16 +1289,17 @@ function calculateTake()
     document.querySelector("#totalCut").textContent = formatNumber(fullTake.toString()).string;
 
     //don't want to need this anymore but i might
-    // console.log("max take", settings.cutLimit || cayo.defaultCutLimit);
-    // console.log("top player take", topPlayerTake);
-    // console.log("full take", fullTake);
-    // console.log("score", score);
-    // console.log("primary price", primaryPrice);
-    // // console.log("primary minus pavel", primaryMinusPavel);
-    // console.log("score minus primary", scoreMinusPrimary);
-    // console.log("single bag load", singleBagLoad);
-    // console.log("gold value", settings.goldValue);
-    // console.log("painting value", settings.paintingValue);
+    console.log("single bag load", singleBagLoad);
+    // console.log("rubios office safe max", safeMax);
+    console.log("max take", settings.cutLimit || cayo.defaultCutLimit);
+    console.log("top player take", topPlayerTake);
+    console.log("full take", fullTake);
+    console.log("score", score);
+    console.log("primary price", primaryPrice);
+    // console.log("primary minus pavel", primaryMinusPavel);
+    console.log("score minus primary", scoreMinusPrimary);
+    console.log("gold value", settings.goldValue);
+    console.log("painting value", settings.paintingValue);
 }
 
 /* set team size*/
@@ -1408,16 +1438,35 @@ function updatePrimaryPrive(event)
 }
 document.querySelector("#primaryValue").addEventListener("input", updatePrimaryPrive);
 
+function toggleOfficeSafe(event)
+{
+    let target = event.target;
+    if (target.textContent == "☑")
+    {
+        target.textContent = "☐";
+        delete settings.takeOfficeSafe;
+    }
+    else
+    {
+        target.textContent = "☑";
+        settings.takeOfficeSafe = true;
+    }
+    calculateTake();
+}
+document.querySelector("#elRubioSafe").addEventListener("click", toggleOfficeSafe);
 
 /* generate stat.txt string */
 function generateStattext()
 {
     var s = ["INT32"];
     s.push("$MPx_H4CNF_BS_GEN"); //TODO document this
-    s.push("131071");
+    s.push(settings.poisonDisruption ? "131071" : "122879");
 
     s.push("$MPx_H4CNF_BS_ENTR"); //TODO binary values for each entry point
-    s.push(settings.vehicleValue.toString());
+    s.push("63");
+
+    //i lost the vehicle variable :/
+    // s.push(settings.vehicleValue.toString());
 
     s.push("$MPx_H4CNF_BS_ABIL"); //TODO binary values for each support option
     s.push("63");
