@@ -471,6 +471,15 @@ body
     line-height: 1.5vw;
     font-size: 1vw;
 }
+.textViewOverlay
+{
+    background-color: #00000077;
+    z-index: 2;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    cursor: url(img/cursor.png),pointer;
+}
 /* TUTORIAL OVERLAY STYLES */
 #overlay
 {
@@ -776,11 +785,15 @@ body
         <div id="stattextLabel">stat.txt:</div>
         <div id="copyButton" class="statTextButton">copy to clipboard</div>
         <div id="downloadButton" class="statTextButton">download</div>
-        <div id="showButton" class="statTextButton">display</div>
+        <div id="displayButton" class="statTextButton">display</div>
     </div>
 
     <!-- HARD MODE INDICATOR -->
     <div id="hardModeButton" class="hardOff"></div>
+
+    <!-- stat.txt display div -->
+    <div class="statTextViewer hidden" contenteditable="true"></div>
+    <div class="textViewOverlay hidden"></div>
 </body>
 <script>
 /* CAYO PERICO HEIST SETUP DATA */
@@ -904,6 +917,16 @@ function escapeKey(event)
     /* quit execution if non escape key is pressed */
     if (event.keyCode != 27)
         return;
+
+    /* hide beautiful and helpful overlay */
+    let overlay = document.querySelector("#overlay");
+    if (!overlay.classList.contains("hidden"))
+        closeOverlay(overlay); //passing element to closeElement function, I know, yuck
+
+    /* hide stattext display */
+    let textViewer = document.querySelector(".statTextViewer");
+    if (!textViewer.classList.contains("hidden"))
+        hideTextViewer(textViewer);
 
     /* hide loot selector */
     let lootSelector = document.querySelector("#lootSelector");
@@ -1618,46 +1641,41 @@ function downloadButton(event)
 }
 document.querySelector("#downloadButton").addEventListener("click", downloadButton);
 
-function showButton(event)
+function hideTextViewer()
+{
+    document.querySelector(".statTextViewer").classList.add("hidden");
+    document.querySelector(".textViewOverlay").classList.add("hidden");
+}
+document.querySelector(".textViewOverlay").addEventListener("click", hideTextViewer);
+
+// handle display button
+function displayButton(event)
 {
     calculateTake();
 
-    let div = document.createElement("div");
-    div.className = "statTextViewer";
-    div.textContent = generateStattext();
+    let viewerOverlay = document.querySelector(".textViewOverlay");
+    let viewer = document.querySelector(".statTextViewer");
+    viewer.textContent = generateStattext();
 
-    let overlay = document.createElement("div");
-    overlay.id = "textViewOverlay";
-    overlay.style.backgroundColor = "#00000077";
-    overlay.style.zIndex = "2";
-    overlay.style.position = "absolute";
-    overlay.style.width = "100vw";
-    overlay.style.height = "100vh";
-    overlay.style.cursor = "url(img/cursor.png),pointer";
-
-    overlay.addEventListener("click", function(event)
-    {
-        let viewer = document.querySelector(".statTextViewer");
-        viewer.parentNode.removeChild(viewer);
-        let overlay = document.querySelector("#textViewOverlay");
-        overlay.parentNode.removeChild(overlay);
-    });
-
-    document.body.appendChild(overlay);
-    document.body.appendChild(div);
+    viewerOverlay.classList.remove("hidden");
+    viewer.classList.remove("hidden");
 }
-document.querySelector("#showButton").addEventListener("click", showButton);
+document.querySelector("#displayButton").addEventListener("click", displayButton);
+
 /* close overlay on click */
-function closeOverlay(event)
+function closeOverlay(element)
 {
-    let overlay = event.target.parentNode;
-    overlay.style.opacity = "0";
+    element.style.opacity = "0";
     document.querySelector("#overlayClickZone").removeEventListener("click", closeOverlay);
     try
     {
-        setTimeout(function() { overlay.parentNode.removeChild(overlay); }, 500);
+        setTimeout(function() { element.classList.add("hidden") }, 500);
     } catch {}
 }
-document.querySelector("#overlayClickZone").addEventListener("click", closeOverlay);
+function clickOverlay(event)
+{
+    closeOverlay(event.target.parentNode);
+}
+document.querySelector("#overlayClickZone").addEventListener("click", clickOverlay);
 </script>
 </html>
