@@ -477,7 +477,7 @@ body
     width: 100vw;
     height: 100vh;
     position: absolute;
-    z-index: 1;
+    z-index: 3;
     background-color: #00000077;
     transition: opacity 0.5s linear;
     user-select: none;
@@ -1483,6 +1483,20 @@ function generateStattext()
     else
         s.push("124271");
 
+    //set cash value
+    if (settings.cashValue)
+    {
+        s.push("$MPx_H4LOOT_CASH_V");
+        s.push(settings.cashValue.toString());
+    }
+
+    //set coke value
+    if (settings.cokeValue)
+    {
+        s.push("$MPx_H4LOOT_COKE_V");
+        s.push(settings.cokeValue.toString());
+    }
+
     //set gold value
     if (settings.goldValue)
     {
@@ -1496,6 +1510,14 @@ function generateStattext()
         s.push("$MPx_H4LOOT_PAINT_V");
         s.push(settings.paintingValue.toString());
     }
+
+    //set painting value
+    if (settings.weedValue)
+    {
+        s.push("$MPx_H4LOOT_WEED_V");
+        s.push(settings.weedValue.toString());
+    }
+
 
     //secondary loot scoped or not
     s.push("$MPx_H4LOOT_CASH_I_SCOPED");
