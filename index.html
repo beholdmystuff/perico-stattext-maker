@@ -1098,6 +1098,10 @@ function reversePercentage(value, percent)
 
     return (value * 100) / (100 - percent);
 }
+function reversePercentage2(value, percent)
+{
+    return (value / percent) * 100;
+}
 
 function getLootSize(loot)
 {
@@ -1113,23 +1117,23 @@ function getLootSize(loot)
 // different loot value for both normal and hard
 function calculateCashValue(bagLoad)
 {
-    settings.cashValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("cash")) : Math.floor((bagLoad * getLootSize("cash")) / cayo.hardModeMultiplier);
+    settings.cashValue = Math.floor(bagLoad * getLootSize("cash"));
 }
 function calculateCokeValue(bagLoad)
 {
-    settings.cokeValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("coke")) : Math.floor((bagLoad * getLootSize("coke")) / cayo.hardModeMultiplier);
+    settings.cokeValue = Math.floor(bagLoad * getLootSize("coke"));
 }
 function calculateGoldValue(bagLoad)
 {
-    settings.goldValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("gold")) : Math.floor((bagLoad * getLootSize("gold")) / cayo.hardModeMultiplier);
+    settings.goldValue = Math.floor(bagLoad * getLootSize("gold"));
 }
 function calculatePaintingValue(bagLoad)
 {
-    settings.paintingValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("painting")) : Math.floor((bagLoad * getLootSize("painting")) / cayo.hardModeMultiplier);
+    settings.paintingValue = Math.floor(bagLoad * getLootSize("painting"));
 }
 function calculateWeedgValue(bagLoad)
 {
-    settings.weedValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("weed")) : Math.floor((bagLoad * getLootSize("weed")) / cayo.hardModeMultiplier);
+    settings.weedValue = Math.floor(bagLoad * getLootSize("weed"));
 }
 
 
@@ -1163,22 +1167,24 @@ function calculateTake()
     if (fullTake > scoreLimit)
         fullTake = scoreLimit;
 
-    //add pavel cut
+    //add pavel cut for total money
     let score = Math.floor(reversePercentage(fullTake, cayo.npcCutPercentage));
 
-    // calculate primary price
+    // calculate primary price if hard mode on
     let primaryPrice = 0;
-    if (settings.primary) //i did it with shorthand if at first but was very ugly
+    if (settings.primary) //i did it with shorthand if at first but was very ugly and i didn't like to look at it
     {
         if (settings.difficulty == "hard")
-            primaryPrice = settings.primary.price * cayo.hardModeMultiplier;
+            primaryPrice = Math.floor(settings.primary.price * cayo.hardModeMultiplier);
         else
             primaryPrice = settings.primary.price;
     }
 
     // let primaryMinusPavel = Math.floor((primaryPrice * ((100 - cayo.npcCutPercentage) * 0.01)));
     let scoreMinusPrimary = Math.floor(score - primaryPrice);
+    // let scoreMinusPrimary = Math.floor(reversePercentage(Math.floor(fullTake - primaryPrice), cayo.npcCutPercentage));
     console.log(score/4150000);
+    console.log(score);
 
     let playerCount = parseInt(document.querySelector("#teamsize .teamSize").value);
     let singleBagLoad = scoreMinusPrimary / playerCount;
@@ -1230,6 +1236,7 @@ function calculateTake()
     document.querySelector("#totalCut").textContent = formatNumber(fullTake.toString()).string;
 
     //don't want to need this anymore but i might
+    console.log("max take", settings.cutLimit || cayo.defaultCutLimit);
     console.log("top player take", topPlayerTake);
     console.log("full take", fullTake);
     console.log("score", score);
