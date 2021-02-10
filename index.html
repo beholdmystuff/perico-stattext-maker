@@ -411,8 +411,8 @@ body
 }
 #stattextContainer
 {
-    top: 53.2vw;
-    left: 29.4vw;
+    top: 4vw;
+    left: 36.4vw;
     position: absolute;
     user-select: none;
 }
@@ -433,8 +433,8 @@ body
 {
     border: 0.2vw solid #8e3232;
     border-radius: 0.2vw;
-    /* margin: 0vw 1vw 0vw 0vw; */
     cursor: url(img/cursor.png),pointer;
+    background-color: #1e1516c2;
 }
 .statTextButton:after
 {
@@ -562,7 +562,7 @@ body
 .selectTruckLocation
 {
     top: 25.7vw;
-    right: 37.1vw;
+    left: 70.9vw;
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
@@ -611,7 +611,17 @@ body
 }
 .calculateCuts
 {
-    top: 18.7vw;
+    top: 25.3vw;
+    left: 37.1vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    padding: 1vw;
+    font-size: 1.7vw;
+}
+.selectLoot
+{
+    top: 20.3vw;
     left: 37.1vw;
     position: absolute;
     border-radius: 2vw;
@@ -621,8 +631,8 @@ body
 }
 .statTextOperations
 {
-    top: 52.7vw;
-    left: 70.5vw;
+    top: 3.7vw;
+    left: 77.5vw;
     position: absolute;
     border-radius: 2vw;
     background-color: #ff9800b0;
@@ -639,12 +649,13 @@ body
         <div class="primaryDisplay arrowRight">Your primary loot price.</div>
         <div class="enterScoreLimit arrowRight">Game limits how much heist can give in total.</div>
         <div class="calculateCuts arrowLeft">Calculator needs player </br>cuts to maximize values.</div>
+        <div class="selectLoot arrowLeft">Select secondary loot.</div>
         <div class="enterTakeLimit arrowRight">Same with player cut.</div>
         <div class="selectTruckLocation arrowRight">Click any truck icon to select its location.</div>
-        <div class="selectPrimary arrowLeft">Select primary loot here.</div>
+        <div class="selectPrimary arrowLeft">Click to open loot selector, click to select primary loot.</div>
         <div class="moneyDisplay arrowLeft">Your calculated heist take will be displayed here.</div>
         <div class="selectDifficulty arrowRight">Toggle Normal or Hard Mode with this button.</div>
-        <div class="statTextOperations arrowLeft">Export your stat.txt and place it</br>next to gtahaxui.exe.</div>
+        <div class="statTextOperations arrowLeft">Export your stat.txt and place it next to gtahaxui.exe.</div>
         <div id="overlayClickZone"></div>
     </div>
 
@@ -1106,19 +1117,19 @@ function calculateCashValue(bagLoad)
 }
 function calculateCokeValue(bagLoad)
 {
-    settings.cokeValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("coke") : Math.floor((bagLoad * getLootSize("coke")) / cayo.hardModeMultiplier);
+    settings.cokeValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("coke")) : Math.floor((bagLoad * getLootSize("coke")) / cayo.hardModeMultiplier);
 }
 function calculateGoldValue(bagLoad)
 {
-    settings.goldValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("gold") : Math.floor((bagLoad * getLootSize("gold")) / cayo.hardModeMultiplier);
+    settings.goldValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("gold")) : Math.floor((bagLoad * getLootSize("gold")) / cayo.hardModeMultiplier);
 }
 function calculatePaintingValue(bagLoad)
 {
-    settings.paintingValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("painting") : Math.floor((bagLoad * getLootSize("painting")) / cayo.hardModeMultiplier);
+    settings.paintingValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("painting")) : Math.floor((bagLoad * getLootSize("painting")) / cayo.hardModeMultiplier);
 }
 function calculateWeedgValue(bagLoad)
 {
-    settings.weedValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("weed") : Math.floor((bagLoad * getLootSize("weed")) / cayo.hardModeMultiplier);
+    settings.weedValue = (settings.difficulty == "normal") ? Math.floor(bagLoad * getLootSize("weed")) : Math.floor((bagLoad * getLootSize("weed")) / cayo.hardModeMultiplier);
 }
 
 
@@ -1147,20 +1158,27 @@ function calculateTake()
     //calculate full take based on highest percentage
     let fullTake = Math.floor(reversePercentage(settings.cutLimit || cayo.defaultCutLimit, 100 - topPlayerTake));
 
-    //exceeding limits means no money is received
-    let actualLimit = (settings.takeLimit || cayo.defaultTakeLimit);
-    if (fullTake > actualLimit)
-        fullTake = actualLimit;
+    //exceeding limits is bad
+    let scoreLimit = (settings.takeLimit || cayo.defaultTakeLimit);
+    if (fullTake > scoreLimit)
+        fullTake = scoreLimit;
 
+    //add pavel cut
     let score = Math.floor(reversePercentage(fullTake, cayo.npcCutPercentage));
 
-    //brace for ugly
-    let primaryPrice = Math.floor(settings.primary ? ( (settings.difficulty == "hard") ? (settings.primary.price * cayo.hardModeMultiplier) : settings.primary.price) : 0);
-    //end ugly
+    // calculate primary price
+    let primaryPrice = 0;
+    if (settings.primary) //i did it with shorthand if at first but was very ugly
+    {
+        if (settings.difficulty == "hard")
+            primaryPrice = settings.primary.price * cayo.hardModeMultiplier;
+        else
+            primaryPrice = settings.primary.price;
+    }
 
-    //pretty now again
-    // let primaryMinusPavel = Math.floor((primaryPrice * (100 - cayo.npcCutPercentage) * 0.01));
+    // let primaryMinusPavel = Math.floor((primaryPrice * ((100 - cayo.npcCutPercentage) * 0.01)));
     let scoreMinusPrimary = Math.floor(score - primaryPrice);
+    console.log(score/4150000);
 
     let playerCount = parseInt(document.querySelector("#teamsize .teamSize").value);
     let singleBagLoad = scoreMinusPrimary / playerCount;
@@ -1605,6 +1623,7 @@ function closeOverlay(event)
 {
     let overlay = event.target.parentNode;
     overlay.style.opacity = "0";
+    document.querySelector("#overlayClickZone").removeEventListener("click", closeOverlay);
     try
     {
         setTimeout(function() { overlay.parentNode.removeChild(overlay); }, 500);
