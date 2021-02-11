@@ -231,6 +231,7 @@ body
     display: inline-flex;
     margin: 0;
     line-height: 4vh;
+    pointer-events: none;
 }
 .checked
 {
@@ -689,7 +690,7 @@ body
     <!-- SETUP -->
     <div id="setupContainer">
         <div id="setupCategories">
-            <div id="approachVehiclesCategory" class="setupCategory"><div class="checkbox"></div><span>Approach Vehicles</span></div>
+            <!-- <div id="approachVehiclesCategory" class="setupCategory"><div class="checkbox"></div><span>Approach Vehicles</span></div> -->
             <div id="weaponCategory" class="setupCategory"><div class="checkbox"></div><span>Weapons</span></div>
             <div id="disruptionCategory" class="setupCategory"><div class="checkbox"></div><span>Disruption</span></div>
             <div id="equipmentCategory" class="setupCategory"><div class="checkbox"></div><span>Equipment</span></div>
@@ -697,15 +698,15 @@ body
             <div id="compoundLootCategory" class="setupCategory"><div class="checkbox"></div><span>Compound Loot</span></div>
             <div id="takeCategory" class="setupCategory"><div class="checkbox"></div><span>Player Take Calculator</span></div>
         </div>
-        <div id="approachVehiclesContainer" class="setupCategoryContainer hidden">
+        <!-- <div id="approachVehiclesContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Approach Vehicles</div>
-            <div id="vehicleKosatka" class="setupCategory" bin="1"><div class="checkbox"></div><span>Submarine: Kosatka</span></div>
-            <div id="vehicleAlkonost" class="setupCategory" bin="2"><div class="checkbox"></div><span>Plane: Alkonost</span></div>
-            <div id="vehicleVelum" class="setupCategory" bin="4"><div class="checkbox"></div><span>Plane: Velum</span></div>
-            <div id="vehicleAnnihilator" class="setupCategory" bin="8"><div class="checkbox"></div><span>Helicopter: Stealth Annihilator</span></div>
-            <div id="vehiclePatrolBoat" class="setupCategory" bin="16"><div class="checkbox"></div><span>Boat: Patrol Boat</span></div>
-            <div id="vehicleLongfin" class="setupCategory" bin="32"><div class="checkbox"></div><span>Boat: Longfin</span></div>
-        </div>
+            <div id="vehicleKosatka" class="setupCategory" bin="5"><div class="checkbox"></div><span>Submarine: Kosatka</span></div>
+            <div id="vehicleAlkonost" class="setupCategory" bin="133"><div class="checkbox"></div><span>Plane: Alkonost</span></div>
+            <div id="vehicleVelum" class="setupCategory" bin="9"><div class="checkbox"></div><span>Plane: Velum</span></div>
+            <div id="vehicleAnnihilator" class="setupCategory" bin="145"><div class="checkbox"></div><span>Helicopter: Stealth Annihilator</span></div>
+            <div id="vehiclePatrolBoat" class="setupCategory" bin="33"><div class="checkbox"></div><span>Boat: Patrol Boat</span></div>
+            <div id="vehicleLongfin" class="setupCategory" bin="65"><div class="checkbox"></div><span>Boat: Longfin</span></div>
+        </div> -->
         <div id="weaponContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Weapons</div>
             <div id="weaponAggressor" class="setupCategory" int="1"><div class="checkbox"></div><span>Aggressor</span></div>
@@ -724,9 +725,11 @@ body
         </div>
         <div id="equipmentContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Equipment</div>
-            <div id="equipmentBoltcutters" class="setupCategory"><div class="checkbox"></div><span>Bolt Cutter</span></div>
-            <div id="equipmentUniform" class="setupCategory"><div class="checkbox"></div><span>Uniform</span></div>
-            <div id="equipmentGrappling" class="setupCategory"><div class="checkbox"></div><span>Grappling Hook</span></div>
+            <!-- <div id="equipmentDemoCharges" class="setupCategory"><div class="checkbox"></div><span>Demolution Charges</span></div>
+            <div id="equipmentTorch" class="setupCategory"><div class="checkbox"></div><span>Cutting Torch</span></div> -->
+            <div id="equipmentBoltcutters" class="setupCategory"><div class="checkbox"></div><span>On-site Bolt Cutter</span></div>
+            <div id="equipmentUniform" class="setupCategory"><div class="checkbox"></div><span>On-site Uniform</span></div>
+            <div id="equipmentGrappling" class="setupCategory"><div class="checkbox"></div><span>On-site Grappling Hook</span></div>
         </div>
         <div id="islandLootContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Island Loot</div>
@@ -851,7 +854,8 @@ let settings =
     primary: 1, //cayo.primary.loot array id
     difficulty: "normal", //cayo.difficulty
     vehicleValue: 0,
-    takeOfficeSafe: true
+    takeOfficeSafe: true,
+    missionsBinary: 65147
 };
 
 /* FUNCTIONALITY */
@@ -995,16 +999,13 @@ function toggleVehicle(event)
     if (checkbox.classList.contains("checked"))
     {
         checkbox.classList.remove("checked");
-        settings.vehicleValue -= parseInt(event.target.getAttribute("bin"));
+        settings.missionsBinary -= parseInt(event.target.getAttribute("bin"));
     }
     else
     {
         checkbox.classList.add("checked");
-        settings.vehicleValue += parseInt(event.target.getAttribute("bin"));
+        settings.missionsBinary += parseInt(event.target.getAttribute("bin"));
     }
-
-    if (settings.vehicleValue < 0)
-        settings.vehicleValue = 0;
 }
 document.querySelectorAll("#approachVehiclesContainer .setupCategory").forEach(function(vehicleElement)
 {
@@ -1040,15 +1041,22 @@ document.querySelectorAll("#weaponContainer .setupCategory").forEach(function(we
 /* mark disruptions */
 function markDisruption(event)
 {
+    let bin = event.target.getAttribute("bin");
     if (event.target.querySelector(".checkbox").classList.contains("checked"))
     {
         delete settings[event.target.id.replace("disruption", "").toLowerCase() + "Disruption"];
         event.target.querySelector(".checkbox").classList.remove("checked");
+
+        if (bin)
+            settings.missionsBinary -= parseInt(bin);
     }
     else
     {
         settings[event.target.id.replace("disruption", "").toLowerCase() + "Disruption"] = 3;
         event.target.querySelector(".checkbox").classList.add("checked");
+
+        if (bin)
+            settings.missionsBinary += parseInt(bin);
     }
 }
 document.querySelectorAll("#disruptionContainer .setupCategory").forEach(function(disruption)
@@ -1059,15 +1067,23 @@ document.querySelectorAll("#disruptionContainer .setupCategory").forEach(functio
 /* select equipment */
 function markEquipment(event)
 {
+    let bin = event.target.getAttribute("bin");
+
     if (event.target.querySelector(".checkbox").classList.contains("checked"))
     {
         delete settings[event.target.id.replace("equipment", "").toLowerCase() + "Equipment"];
         event.target.querySelector(".checkbox").classList.remove("checked");
+
+        if (bin)
+            settings.missionsBinary -= parseInt(bin);
     }
     else
     {
         settings[event.target.id.replace("equipment", "").toLowerCase() + "Equipment"] = true;
         event.target.querySelector(".checkbox").classList.add("checked");
+
+        if (bin)
+            settings.missionsBinary += parseInt(bin);
     }
 }
 document.querySelectorAll("#equipmentContainer .setupCategory").forEach(function(equip)
@@ -1465,9 +1481,6 @@ function generateStattext()
     s.push("$MPx_H4CNF_BS_ENTR"); //TODO binary values for each entry point
     s.push("63");
 
-    //i lost the vehicle variable :/
-    // s.push(settings.vehicleValue.toString());
-
     s.push("$MPx_H4CNF_BS_ABIL"); //TODO binary values for each support option
     s.push("63");
 
@@ -1591,7 +1604,6 @@ function generateStattext()
         s.push(settings.weedValue.toString());
     }
 
-
     //secondary loot scoped or not
     s.push("$MPx_H4LOOT_CASH_I_SCOPED");
     s.push(settings.islandLoot == "cash" ? "-1" : "0");
@@ -1614,7 +1626,9 @@ function generateStattext()
 
     //no idea what this does, can guess by the name though
     s.push("$MPx_H4_MISSIONS");
+    // s.push(settings.missionsBinary.toString());
     s.push("65535");
+
     s.push("$MPx_H4_PLAYTHROUGH_STATUS");
     s.push("40000");
 
