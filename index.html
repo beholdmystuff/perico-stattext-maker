@@ -690,7 +690,7 @@ body
     <!-- SETUP -->
     <div id="setupContainer">
         <div id="setupCategories">
-            <!-- <div id="approachVehiclesCategory" class="setupCategory"><div class="checkbox"></div><span>Approach Vehicles</span></div> -->
+            <div id="approachVehiclesCategory" class="setupCategory"><div class="checkbox"></div><span>Approach Vehicles</span></div>
             <div id="weaponCategory" class="setupCategory"><div class="checkbox"></div><span>Weapons</span></div>
             <div id="disruptionCategory" class="setupCategory"><div class="checkbox"></div><span>Disruption</span></div>
             <div id="equipmentCategory" class="setupCategory"><div class="checkbox"></div><span>Equipment</span></div>
@@ -698,15 +698,15 @@ body
             <div id="compoundLootCategory" class="setupCategory"><div class="checkbox"></div><span>Compound Loot</span></div>
             <div id="takeCategory" class="setupCategory"><div class="checkbox"></div><span>Player Take Calculator</span></div>
         </div>
-        <!-- <div id="approachVehiclesContainer" class="setupCategoryContainer hidden">
+        <div id="approachVehiclesContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Approach Vehicles</div>
-            <div id="vehicleKosatka" class="setupCategory" bin="5"><div class="checkbox"></div><span>Submarine: Kosatka</span></div>
-            <div id="vehicleAlkonost" class="setupCategory" bin="133"><div class="checkbox"></div><span>Plane: Alkonost</span></div>
-            <div id="vehicleVelum" class="setupCategory" bin="9"><div class="checkbox"></div><span>Plane: Velum</span></div>
-            <div id="vehicleAnnihilator" class="setupCategory" bin="145"><div class="checkbox"></div><span>Helicopter: Stealth Annihilator</span></div>
-            <div id="vehiclePatrolBoat" class="setupCategory" bin="33"><div class="checkbox"></div><span>Boat: Patrol Boat</span></div>
-            <div id="vehicleLongfin" class="setupCategory" bin="65"><div class="checkbox"></div><span>Boat: Longfin</span></div>
-        </div> -->
+            <div id="vehicleKosatka" class="setupCategory" bit="1"><div class="checkbox"></div><span>Submarine: Kosatka</span></div>
+            <div id="vehicleAlkonost" class="setupCategory" bit="2"><div class="checkbox"></div><span>Plane: Alkonost</span></div>
+            <div id="vehicleVelum" class="setupCategory" bit="3"><div class="checkbox"></div><span>Plane: Velum</span></div>
+            <div id="vehicleAnnihilator" class="setupCategory" bit="4"><div class="checkbox"></div><span>Helicopter: Stealth Annihilator</span></div>
+            <div id="vehiclePatrolBoat" class="setupCategory" bit="5"><div class="checkbox"></div><span>Boat: Patrol Boat</span></div>
+            <div id="vehicleLongfin" class="setupCategory" bit="6"><div class="checkbox"></div><span>Boat: Longfin</span></div>
+        </div>
         <div id="weaponContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Weapons</div>
             <div id="weaponAggressor" class="setupCategory" int="1"><div class="checkbox"></div><span>Aggressor</span></div>
@@ -718,15 +718,15 @@ body
         </div>
         <div id="disruptionContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Disruption</div>
-            <div id="disruptionWeapons" class="setupCategory"><div class="checkbox"></div><span>Weapons</span></div>
-            <div id="disruptionArmor" class="setupCategory"><div class="checkbox"></div><span>Armor</span></div>
-            <div id="disruptionAirSupport" class="setupCategory"><div class="checkbox"></div><span>Air Support</span></div>
-            <div id="disruptionPoison" class="setupCategory"><div class="checkbox"></div><span>Poison Guards</span></div>
+            <div id="disruptionWeapons" class="setupCategory" bit="13"><div class="checkbox"></div><span>Weapons</span></div>
+            <div id="disruptionArmor" class="setupCategory" bit="14"><div class="checkbox"></div><span>Armor</span></div>
+            <div id="disruptionAirSupport" class="setupCategory" bit="15"><div class="checkbox"></div><span>Air Support</span></div>
+            <div id="disruptionPoison" class="setupCategory"><div class="checkbox"></div><span>Poison the Guards</span></div>
         </div>
         <div id="equipmentContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Equipment</div>
-            <!-- <div id="equipmentDemoCharges" class="setupCategory"><div class="checkbox"></div><span>Demolution Charges</span></div>
-            <div id="equipmentTorch" class="setupCategory"><div class="checkbox"></div><span>Cutting Torch</span></div> -->
+            <div id="equipmentDemoCharges" class="setupCategory" bit="8"><div class="checkbox"></div><span>Demolution Charges</span></div>
+            <div id="equipmentTorch" class="setupCategory" bit="9"><div class="checkbox"></div><span>Cutting Torch</span></div>
             <div id="equipmentBoltcutters" class="setupCategory"><div class="checkbox"></div><span>On-site Bolt Cutter</span></div>
             <div id="equipmentUniform" class="setupCategory"><div class="checkbox"></div><span>On-site Uniform</span></div>
             <div id="equipmentGrappling" class="setupCategory"><div class="checkbox"></div><span>On-site Grappling Hook</span></div>
@@ -835,13 +835,12 @@ let cayo =
     [
         { name: "Cash", size: 0.25, variable: "CASH" },
         { name: "Painting",  size: 0.5, variable: "PAINT"},
-        { name: "Weed",  size: 0.5, variable: "WEED" },
+        { name: "Weed",  size: 0.4, variable: "WEED" },
         { name: "Coke",  size: 0.5, variable: "COKE" },
         { name: "Gold",  size: 0.6666666, variable: "GOLD" }
     ],
     npcCutPercentage: 12,
     hardModeMultiplier: 1.1,
-    // defaultCutLimit: 4150000,
     defaultCutLimit: 2550000,
     defaultTakeLimit: 10818212,
     officeSafeMax: 100000
@@ -855,7 +854,7 @@ let settings =
     difficulty: "normal", //cayo.difficulty
     vehicleValue: 0,
     takeOfficeSafe: true,
-    missionsBinary: 65147
+    missionsBinary: 1+1024+2048 // gather intel + mandatory cutter + cloner
 };
 
 /* FUNCTIONALITY */
@@ -995,16 +994,32 @@ document.querySelectorAll(".backButton").forEach(function(button)
 /* unlock vehicles */
 function toggleVehicle(event)
 {
+    let bit = parseInt(event.target.getAttribute("bit"));
+
     var checkbox = event.target.querySelector(".checkbox");
     if (checkbox.classList.contains("checked"))
     {
         checkbox.classList.remove("checked");
-        settings.missionsBinary -= parseInt(event.target.getAttribute("bin"));
+        settings.missionsBinary -= 1 << bit; //remove the vehicle bit first
+
+        // i did it single line but holy shit it was bad to read
+        if (bit == 2 || bit == 4) //if alkonost or stealth annihilator are clicked on
+        if ((settings.missionsBinary & 1 << 2) == 0 // if alkonost
+            && (settings.missionsBinary & 1 << 4) == 0) // and annihilator bits are no longer set
+        if ((settings.missionsBinary & 1 << 7) != 0) // but pilot bit is set
+            settings.missionsBinary -= 1 << 7;;; // remove pilot bit and force kill all ifs
     }
     else
     {
         checkbox.classList.add("checked");
-        settings.missionsBinary += parseInt(event.target.getAttribute("bin"));
+
+        if (bit == 2 || bit == 4) // if alkonost or annihilator are clicked on
+        if ((settings.missionsBinary & 1 << 2) == 0 // if alkonost
+            && (settings.missionsBinary & 1 << 4) == 0) // and annihilator
+        if ((settings.missionsBinary & 1 << 7) == 0) // and pilot are not set
+            settings.missionsBinary += 1 << 7;;; //set pilot bit and force kill all ifs
+
+        settings.missionsBinary += 1 << bit; //then set vehicle bit
     }
 }
 document.querySelectorAll("#approachVehiclesContainer .setupCategory").forEach(function(vehicleElement)
@@ -1023,6 +1038,7 @@ function selectWeapon(event)
     if (event.target.classList.contains("checked"))
     {
         event.target.querySelector(".checkbox").classList.remove("checked");
+        settings.missionsBinary -= 1 << 12;
     }
     else
     {
@@ -1031,6 +1047,7 @@ function selectWeapon(event)
             weapon.querySelector(".checkbox").classList.remove("checked");
         });
         event.target.querySelector(".checkbox").classList.add("checked");
+        settings.missionsBinary += 1 << 12;
     }
 }
 document.querySelectorAll("#weaponContainer .setupCategory").forEach(function(weapon)
@@ -1041,22 +1058,22 @@ document.querySelectorAll("#weaponContainer .setupCategory").forEach(function(we
 /* mark disruptions */
 function markDisruption(event)
 {
-    let bin = event.target.getAttribute("bin");
+    let bit = event.target.getAttribute("bit");
     if (event.target.querySelector(".checkbox").classList.contains("checked"))
     {
         delete settings[event.target.id.replace("disruption", "").toLowerCase() + "Disruption"];
         event.target.querySelector(".checkbox").classList.remove("checked");
 
-        if (bin)
-            settings.missionsBinary -= parseInt(bin);
+        if (bit)
+            settings.missionsBinary -= 1 << parseInt(bit);
     }
     else
     {
         settings[event.target.id.replace("disruption", "").toLowerCase() + "Disruption"] = 3;
         event.target.querySelector(".checkbox").classList.add("checked");
 
-        if (bin)
-            settings.missionsBinary += parseInt(bin);
+        if (bit)
+            settings.missionsBinary += 1 << parseInt(bit);
     }
 }
 document.querySelectorAll("#disruptionContainer .setupCategory").forEach(function(disruption)
@@ -1067,23 +1084,23 @@ document.querySelectorAll("#disruptionContainer .setupCategory").forEach(functio
 /* select equipment */
 function markEquipment(event)
 {
-    let bin = event.target.getAttribute("bin");
+    let bit = event.target.getAttribute("bit");
 
     if (event.target.querySelector(".checkbox").classList.contains("checked"))
     {
         delete settings[event.target.id.replace("equipment", "").toLowerCase() + "Equipment"];
         event.target.querySelector(".checkbox").classList.remove("checked");
 
-        if (bin)
-            settings.missionsBinary -= parseInt(bin);
+        if (bit)
+            settings.missionsBinary -= 1 << parseInt(bit);
     }
     else
     {
         settings[event.target.id.replace("equipment", "").toLowerCase() + "Equipment"] = true;
         event.target.querySelector(".checkbox").classList.add("checked");
 
-        if (bin)
-            settings.missionsBinary += parseInt(bin);
+        if (bit)
+            settings.missionsBinary += 1 << parseInt(bit);
     }
 }
 document.querySelectorAll("#equipmentContainer .setupCategory").forEach(function(equip)
@@ -1626,8 +1643,7 @@ function generateStattext()
 
     //no idea what this does, can guess by the name though
     s.push("$MPx_H4_MISSIONS");
-    // s.push(settings.missionsBinary.toString());
-    s.push("65535");
+    s.push(settings.missionsBinary.toString());
 
     s.push("$MPx_H4_PLAYTHROUGH_STATUS");
     s.push("40000");
