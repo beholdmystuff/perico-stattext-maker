@@ -336,18 +336,18 @@ body
 }
 #truck1
 {
-    top: 12vw;
+    top: 11vw;
     left: 56.4vw;
 }
 #truck2
 {
     top: 13.2vw;
-    left: 70.7vw;
+    left: 71vw;
 }
 #truck3
 {
     top: 24.6vw;
-    left: 70.3vw;
+    left: 71.5vw;
 }
 #truck4
 {
@@ -358,6 +358,105 @@ body
 {
     top: 38.6vw;
     left: 66.5vw;
+}
+.hookIcon
+{
+    background-image: url(img/grappling_hook_off.png);
+    background-size: 100% 100%;
+    width: 1.7vw;
+    height: 1.7vw;
+    position: absolute;
+    cursor: url(img/cursor.png),pointer;
+}
+.hookOn
+{
+    background-image: url(img/grappling_hook_on.png);
+}
+#hook1
+{
+    top: 15.9vw;
+    left: 55.4vw;
+}
+#hook2
+{
+    top: 13.2vw;
+    left: 68.9vw;
+}
+#hook3
+{
+    top: 26.5vw;
+    left: 70vw;
+}
+#hook4
+{
+    top: 26.5vw;
+    left: 80.5vw;
+}
+.clothesIcon
+{
+    background-image: url(img/clothes_off.png);
+    background-size: 100% 100%;
+    width: 1.7vw;
+    height: 1.7vw;
+    position: absolute;
+    cursor: url(img/cursor.png),pointer;
+}
+.clothesOn
+{
+    background-image: url(img/clothes_on.png);
+}
+#clothes1
+{
+    top: 12.3vw;
+    left: 54.4vw;
+}
+#clothes2
+{
+    top: 11.4vw;
+    left: 69.9vw;
+}
+#clothes3
+{
+    top: 29vw;
+    left: 65.7vw;
+}
+#clothes4
+{
+    top: 32.8vw;
+    left: 64.5vw;
+}
+.cuttersIcon
+{
+    background-image: url(img/bolt_cutters_off.png);
+    background-size: 100% 100%;
+    width: 1.7vw;
+    height: 1.7vw;
+    position: absolute;
+    cursor: url(img/cursor.png),pointer;
+}
+.cuttersOn
+{
+    background-image: url(img/bolt_cutters_on.png);
+}
+#cutters1
+{
+    top: 13.3vw;
+    left: 56.4vw;
+}
+#cutters2
+{
+    top: 15.1vw;
+    left: 71.2vw;
+}
+#cutters3
+{
+    top: 24.4vw;
+    left: 66.7vw;
+}
+#cutters4
+{
+    top: 32.5vw;
+    left: 75.7vw;
 }
 .invisibleTextarea
 {
@@ -714,22 +813,19 @@ body
             <div id="weaponCrackshot" class="setupCategory" int="3"><div class="checkbox"></div><span>Crackshot</span></div>
             <div id="weaponSaboteur" class="setupCategory" int="4"><div class="checkbox"></div><span>Saboteur</span></div>
             <div id="weaponMarksman" class="setupCategory" int="5"><div class="checkbox"></div><span>Marksman</span></div>
-            <!-- <div id="weaponSuppressors" class="setupCategory"><div class="checkbox checked"></div><span>Suppressors</span></div> -->
+            <div id="weaponSuppressors" class="setupCategory" bit="12"><div class="checkbox"></div><span>Suppressors</span></div>
         </div>
         <div id="disruptionContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Disruption</div>
             <div id="disruptionWeapons" class="setupCategory" bit="13"><div class="checkbox"></div><span>Weapons</span></div>
             <div id="disruptionArmor" class="setupCategory" bit="14"><div class="checkbox"></div><span>Armor</span></div>
             <div id="disruptionAirSupport" class="setupCategory" bit="15"><div class="checkbox"></div><span>Air Support</span></div>
-            <div id="disruptionPoison" class="setupCategory"><div class="checkbox"></div><span>Poison the Guards</span></div>
+            <div id="disruptionPoison" class="setupCategory" bit="13"><div class="checkbox"></div><span>Cutting Powder</span></div>
         </div>
         <div id="equipmentContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Equipment</div>
             <div id="equipmentDemoCharges" class="setupCategory" bit="8"><div class="checkbox"></div><span>Demolution Charges</span></div>
             <div id="equipmentTorch" class="setupCategory" bit="9"><div class="checkbox"></div><span>Cutting Torch</span></div>
-            <div id="equipmentBoltcutters" class="setupCategory"><div class="checkbox"></div><span>On-site Bolt Cutter</span></div>
-            <div id="equipmentUniform" class="setupCategory"><div class="checkbox"></div><span>On-site Uniform</span></div>
-            <div id="equipmentGrappling" class="setupCategory"><div class="checkbox"></div><span>On-site Grappling Hook</span></div>
         </div>
         <div id="islandLootContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Island Loot</div>
@@ -793,6 +889,22 @@ body
     <div id="truck4" class="truckIcon"></div>
     <div id="truck5" class="truckIcon"></div>
 
+    <div id="hook1" class="hookIcon" bit="0"></div>
+    <div id="hook2" class="hookIcon" bit="1"></div>
+    <div id="hook3" class="hookIcon" bit="2"></div>
+    <div id="hook4" class="hookIcon" bit="3"></div>
+
+    <div id="clothes1" class="clothesIcon" bit="4"></div>
+    <div id="clothes2" class="clothesIcon" bit="5"></div>
+    <div id="clothes3" class="clothesIcon" bit="6"></div>
+    <div id="clothes4" class="clothesIcon" bit="7"></div>
+
+    <div id="cutters1" class="cuttersIcon" bit="8"></div>
+    <div id="cutters2" class="cuttersIcon" bit="9"></div>
+    <div id="cutters3" class="cuttersIcon" bit="10"></div>
+    <div id="cutters4" class="cuttersIcon" bit="11"></div>
+
+
     <!-- DISPLAY PLAYER CUT CALCULATOR -->
     <div id="playerCutContainer">
         <div class="playerMoney"><span></span><span></span></div>
@@ -854,7 +966,8 @@ let settings =
     difficulty: "normal", //cayo.difficulty
     vehicleValue: 0,
     takeOfficeSafe: true,
-    missionsBinary: 1+1024+2048 // gather intel + mandatory cutter + cloner
+    missionsBinary: 1+1024+2048, // gather intel + mandatory cutter + cloner
+    pois: 16384+65536 //power station + control tower
 };
 
 /* FUNCTIONALITY */
@@ -1035,25 +1148,46 @@ document.querySelectorAll("#approachVehiclesContainer .setupCategory").forEach(f
 function selectWeapon(event)
 {
     settings.weaponID = parseInt(event.target.getAttribute("int"));
-    if (event.target.classList.contains("checked"))
+    console.log(event.target.id);
+
+    let checkbox = event.target.querySelector(".checkbox");
+    if (checkbox.classList.contains("checked"))
     {
         event.target.querySelector(".checkbox").classList.remove("checked");
         settings.missionsBinary -= 1 << 12;
     }
     else
     {
-        document.querySelectorAll("#weaponContainer .setupCategory").forEach(function(weapon)
+        document.querySelectorAll("#weaponContainer .setupCategory:not(#weaponSuppressors)").forEach(function(weapon)
         {
             weapon.querySelector(".checkbox").classList.remove("checked");
         });
+
         event.target.querySelector(".checkbox").classList.add("checked");
         settings.missionsBinary += 1 << 12;
     }
 }
-document.querySelectorAll("#weaponContainer .setupCategory").forEach(function(weapon)
+document.querySelectorAll("#weaponContainer .setupCategory:not(#weaponSuppressors)").forEach(function(weapon)
 {
     weapon.addEventListener("click", selectWeapon);
 });
+
+function selectSuppressors(event)
+{
+    let bit = parseInt(event.target.getAttribute("bit"));
+    let checkbox = event.target.querySelector(".checkbox");
+    if (checkbox.classList.contains("checked"))
+    {
+        checkbox.classList.remove("checked");
+        settings.pois -= 1 << parseInt(event.target.getAttribute("bit"));
+    }
+    else
+    {
+        checkbox.classList.add("checked");
+        settings.pois += 1 << parseInt(event.target.getAttribute("bit"));
+    }
+}
+document.querySelector("#weaponSuppressors").addEventListener("click", selectSuppressors);
 
 /* mark disruptions */
 function markDisruption(event)
@@ -1064,17 +1198,23 @@ function markDisruption(event)
         delete settings[event.target.id.replace("disruption", "").toLowerCase() + "Disruption"];
         event.target.querySelector(".checkbox").classList.remove("checked");
 
-        if (bit)
+        if (event.target.id != "disruptionPoison") // disruptionPoison has different variable bit
             settings.missionsBinary -= 1 << parseInt(bit);
+        else //diarrhea powder is in points of interest variable, yes
+            settings.pois -= 1 << parseInt(bit);
+
     }
     else
     {
         settings[event.target.id.replace("disruption", "").toLowerCase() + "Disruption"] = 3;
         event.target.querySelector(".checkbox").classList.add("checked");
 
-        if (bit)
+        if (event.target.id != "disruptionPoison")
             settings.missionsBinary += 1 << parseInt(bit);
+        else
+            settings.pois += 1 << parseInt(bit);
     }
+    console.log(event.target.id);
 }
 document.querySelectorAll("#disruptionContainer .setupCategory").forEach(function(disruption)
 {
@@ -1428,23 +1568,34 @@ takeLimit.addEventListener("input", updateTakeLimit);
 takeLimit.value = cayo.defaultTakeLimit;
 formatTakeLimit(takeLimit);
 
+/* beware of copy-paste monster*/
 /* select supply truck location */
 function selectSupplyTruckLocation(event)
 {
     let target = event.target;
+
     settings.supplyTruckLocation = parseInt(target.id.replace("truck", ""));
 
     if (target.classList.contains("truckOn")) //disable truck selection
     {
+        settings.pois -= 1 << 15;
         delete settings.supplyTruckLocation;
         target.classList.remove("truckOn");
     }
     else
     {
+        let isTruckSelected = false;
         document.querySelectorAll(".truckIcon").forEach(function(truckElement)
         {
+            if (truckElement.classList.contains("truckOn"))
+                isTruckSelected = true;
             truckElement.classList.remove("truckOn");
         });
+
+        //do not add bit if truck is already selected
+        //cause you're just switching places of already enabled truck
+        if (!isTruckSelected)
+            settings.pois += 1 << 15;
 
         target.classList.add("truckOn");
     }
@@ -1452,6 +1603,51 @@ function selectSupplyTruckLocation(event)
 document.querySelectorAll(".truckIcon").forEach(function(truckElement)
 {
     truckElement.addEventListener("click", selectSupplyTruckLocation);
+});
+
+//generic mark function
+function markMyPOIsBoys(event, type)
+{
+    let target = event.target;
+    let bit = parseInt(event.target.getAttribute("bit"));
+
+    if (target.classList.contains(type + "On")) //disable truck selection
+    {
+        settings.pois -= 1 << bit;
+        target.classList.remove(type + "On");
+    }
+    else
+    {
+        settings.pois += 1 << bit;
+        target.classList.add(type + "On");
+    }
+}
+//select grappling hook locations
+function selectGrapplingHookLocation(event)
+{
+    markMyPOIsBoys(event, "hook");
+}
+document.querySelectorAll(".hookIcon").forEach(function(hookElement)
+{
+    hookElement.addEventListener("click", selectGrapplingHookLocation);
+});
+//select guard clothes locations
+function selectGuardClothesLocation(event)
+{
+    markMyPOIsBoys(event, "clothes");
+}
+document.querySelectorAll(".clothesIcon").forEach(function(clothesElement)
+{
+    clothesElement.addEventListener("click", selectGuardClothesLocation);
+});
+//select bolt cutters location
+function selectBoltCuttersLocation(event)
+{
+    markMyPOIsBoys(event, "cutters");
+}
+document.querySelectorAll(".cuttersIcon").forEach(function(cuttersElement)
+{
+    cuttersElement.addEventListener("click", selectBoltCuttersLocation);
 });
 
 /* edit primary value */
@@ -1492,8 +1688,44 @@ document.querySelector("#elRubioSafe").addEventListener("click", toggleOfficeSaf
 function generateStattext()
 {
     var s = ["INT32"];
-    s.push("$MPx_H4CNF_BS_GEN"); //TODO document this
-    s.push(settings.poisonDisruption ? "131071" : "122879");
+
+    /* $MPx_H4CNF_BS_GEN
+    grappling hooks
+    (bits are left shift value)
+    int 1, bit 0 https://i.imgur.com/i9PpBqb.jpeg
+    int 2, bit 1 https://i.imgur.com/XnTJNZ0.jpeg
+    int 4, bit 2 https://i.imgur.com/mD1CnIH.jpg
+    int 8, bit 3 https://i.imgur.com/DIRqJeO.jpeg
+
+    guard clothes
+    int 16, bit 4 https://i.imgur.com/TOToYmD.jpg
+    int 32, bit 5 https://i.imgur.com/F5QICaa.jpg
+    int 64, bit 6 https://i.imgur.com/o7ybn3e.jpeg
+    int 128, bit 7 https://i.imgur.com/TnmehzB.jpeg
+
+    bolt cutters
+    int 256, bit 8 https://i.imgur.com/vp2dZ8h.jpg
+    int 512, bit 9 https://i.imgur.com/uDVoRVY.jpg
+    int 1024, bit 10 https://i.imgur.com/nRQUIAb.jpg
+    int 2048, bit 11 https://i.imgur.com/quloOFA.jpg
+
+    suppressors
+    int 4096, bit 12
+
+    cutting powder
+    int 8192, bit 13
+
+    power station
+    int 16384, bit 14 https://i.imgur.com/BwTegxb.jpg
+
+    supply truck
+    int 32768, bit 15 https://i.imgur.com/vScO6P8.jpg
+
+    control tower
+    int 65536, bit 16 https://i.imgur.com/XZ6WiHV.jpg
+    */
+    s.push("$MPx_H4CNF_BS_GEN");
+    s.push(settings.pois);
 
     s.push("$MPx_H4CNF_BS_ENTR"); //TODO binary values for each entry point
     s.push("63");
@@ -1501,13 +1733,13 @@ function generateStattext()
     s.push("$MPx_H4CNF_BS_ABIL"); //TODO binary values for each support option
     s.push("63");
 
-    if (settings.weaponID) //TODO suppressors are on by default, don't know where are those
+    if (settings.weaponID)
     {
         s.push("$MPx_H4CNF_WEAPONS");
         s.push(settings.weaponID.toString());
     }
 
-    if (settings.weaponsDisruption) //weapon disruption, full power
+    if (settings.weaponsDisruption) //weapon disruption, full power (int 3)
     {
         s.push("$MPx_H4CNF_WEP_DISRP");
         s.push(settings.weaponsDisruption.toString());
@@ -1531,19 +1763,19 @@ function generateStattext()
         s.push(settings.primary.value.toString());
     }
 
-    if (settings.boltcuttersEquipment) //mark all bolt cutter locations
+    if ((settings.pois & 9) != 0 || (settings.pois & 10) != 0 || (settings.pois & 11) != 0 || (settings.pois & 12) != 0) //mark bolt cutter locations
     {
         s.push("$MPx_H4CNF_BOLTCUT");
         s.push("4424");
     }
 
-    if (settings.uniformEquipment) //mark all uniform locations
+    if ((settings.pois & 5) != 0 || (settings.pois & 6) != 0 || (settings.pois & 7) != 0 || (settings.pois & 8) != 0) //mark uniform locations
     {
         s.push("$MPx_H4CNF_UNIFORM");
         s.push("5256");
     }
 
-    if (settings.grapplingEquipment) //mark all uniform locations
+    if ((settings.pois & 1) != 0 || (settings.pois & 2) != 0 || (settings.pois & 3) != 0 || (settings.pois & 4) != 0) //mark hook locations
     {
         s.push("$MPx_H4CNF_GRAPPEL");
         s.push("5156");
