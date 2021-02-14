@@ -347,7 +347,7 @@ body
 #truck3
 {
     top: 24.6vw;
-    left: 70.3vw;
+    left: 71.5vw;
 }
 #truck4
 {
@@ -389,8 +389,8 @@ body
 }
 #hook4
 {
-    top: 38vw;
-    left: 81vw;
+    top: 26.5vw;
+    left: 80.5vw;
 }
 .clothesIcon
 {
@@ -455,8 +455,8 @@ body
 }
 #cutters4
 {
-    top: 34.8vw;
-    left: 61.5vw;
+    top: 32.5vw;
+    left: 75.7vw;
 }
 .invisibleTextarea
 {
@@ -591,7 +591,159 @@ body
     right: 8.5vw;
     cursor: url(img/cursor.png),pointer;
 }
-
+#compoundSettings
+{
+    position: absolute;
+    top: 3.6vw;
+    left: 34.9vw;
+    width: 58.4vw;
+    height: 47.3vw;
+    transition: clip-path 1s linear;
+}
+.compoundExpanded
+{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+.compoundContracted
+{
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+}
+#compoundMap
+{
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    background-image: url(img/compound_map.png);
+    background-size: 100% 100%;
+}
+.lootSpot
+{
+    border: 0.2vw solid #8c3d40;
+    border-radius: 50%;
+    width: 1.5vw;
+    height: 1.5vw;
+    display: block;
+    position: absolute;
+    font-size: 1.2vw;
+    line-height: 1.5vw;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #8c3d40;
+    text-align: center;
+    background-color: #1a1414de;
+    cursor: url(img/cursor.png),pointer;
+    user-select: none;
+}
+#northA
+{
+    top: 29.5vw;
+    left: 43.5vw;
+}
+#northB
+{
+    top: 29.5vw;
+    left: 45.7vw;
+}
+#centralA
+{
+    top: 21.5vw;
+    left: 29.8vw;
+}
+#centralB
+{
+    top: 21.5vw;
+    left: 32vw;
+}
+#southA
+{
+    top: 34vw;
+    left: 22vw;
+}
+#southB
+{
+    top: 34vw;
+    left: 24.2vw;
+}
+#basementA
+{
+    top: 22.5vw;
+    left: 22vw;
+}
+#basementB
+{
+    top: 22.5vw;
+    left: 19.8vw;
+}
+.contentCash:before
+{
+    content: "$";
+}
+.contentCoke:before
+{
+    content: "C";
+}
+.contentGold:before
+{
+    content: "G";
+}
+.contentWeed:before
+{
+    content: "W";
+}
+.paintingOn:before
+{
+    content: "P";
+}
+.paintingSpot
+{
+    border: 0.2vw solid #8c3d40;
+    width: 1.5vw;
+    height: 1.8vw;
+    display: block;
+    position: absolute;
+    font-size: 1.2vw;
+    line-height: 2vw;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #8c3d40;
+    text-align: center;
+    background-color: #1a1414de;
+    cursor: url(img/cursor.png),pointer;
+    user-select: none;
+}
+#paintingNorth
+{
+    top: 31.6vw;
+    left: 44.5vw;
+}
+#paintingCentral
+{
+    top: 23.6vw;
+    left: 30.9vw;
+}
+#paintingSouth
+{
+    top: 36.1vw;
+    left: 23.1vw;
+}
+#paintingOfficeA
+{
+    top: 23.6vw;
+    left: 26.1vw;
+}
+#paintingOfficeB
+{
+    top: 25vw;
+    left: 23.9vw;
+}
+#paintingBasementA
+{
+    top: 20vw;
+    left: 22vw;
+}
+#paintingBasementB
+{
+    top: 20vw;
+    left: 19.8vw;
+}
 /* TUTORIAL OVERLAY STYLES */
 #overlay
 {
@@ -868,51 +1020,74 @@ body
     <!-- PRIMARY LOOT SELECTED -->
     <div id="lootPic"></div>
     <div id="lootName"></div>
-    <div id="primaryName"></div>
-    <input id="primaryValue" type="text" class="moneyLimit"></div>
-
-    <!-- TOTAL TAKE LIMIT -->
-    <div id="takeLimitLabel" class="moneyLimitLabel">Total Take Limit</div>
-    <input id="takeLimit" type="text" class="moneyLimit"></div>
-
-    <!-- CUT LIMIT -->
-    <div id="cutLimitLabel" class="moneyLimitLabel">Cut Limit</div>
-    <input id="cutLimit" type="text" class="moneyLimit"></div>
-
-    <!-- el rubio safe -->
-    <div id="elRubioSafe">☑</div>
 
     <!-- DISPLAY TRUCK ICONS -->
-    <div id="truck1" class="truckIcon"></div>
-    <div id="truck2" class="truckIcon"></div>
-    <div id="truck3" class="truckIcon"></div>
-    <div id="truck4" class="truckIcon"></div>
-    <div id="truck5" class="truckIcon"></div>
+    <div id="mainSettings">
+        <!-- PRIMARY LOOT PRICE AND NAME -->
+        <div id="primaryName"></div>
+        <input id="primaryValue" type="text" class="moneyLimit">
 
-    <div id="hook1" class="hookIcon" bit="0"></div>
-    <div id="hook2" class="hookIcon" bit="1"></div>
-    <div id="hook3" class="hookIcon" bit="2"></div>
-    <div id="hook4" class="hookIcon" bit="3"></div>
+        <!-- TOTAL TAKE LIMIT -->
+        <div id="takeLimitLabel" class="moneyLimitLabel">Total Take Limit</div>
+        <input id="takeLimit" type="text" class="moneyLimit">
 
-    <div id="clothes1" class="clothesIcon" bit="4"></div>
-    <div id="clothes2" class="clothesIcon" bit="5"></div>
-    <div id="clothes3" class="clothesIcon" bit="6"></div>
-    <div id="clothes4" class="clothesIcon" bit="7"></div>
+        <!-- CUT LIMIT -->
+        <div id="cutLimitLabel" class="moneyLimitLabel">Cut Limit</div>
+        <input id="cutLimit" type="text" class="moneyLimit">
 
-    <div id="cutters1" class="cuttersIcon" bit="8"></div>
-    <div id="cutters2" class="cuttersIcon" bit="9"></div>
-    <div id="cutters3" class="cuttersIcon" bit="10"></div>
-    <div id="cutters4" class="cuttersIcon" bit="11"></div>
+        <!-- el rubio safe -->
+        <div id="elRubioSafe">☑</div>
 
+        <div id="truck1" class="truckIcon"></div>
+        <div id="truck2" class="truckIcon"></div>
+        <div id="truck3" class="truckIcon"></div>
+        <div id="truck4" class="truckIcon"></div>
+        <div id="truck5" class="truckIcon"></div>
 
-    <!-- DISPLAY PLAYER CUT CALCULATOR -->
-    <div id="playerCutContainer">
-        <div class="playerMoney"><span></span><span></span></div>
-        <div class="playerMoney"><span></span><span></span></div>
-        <div class="playerMoney"><span></span><span></span></div>
-        <div class="playerMoney"><span></span><span></span></div>
+        <div id="hook1" class="hookIcon" bit="0"></div>
+        <div id="hook2" class="hookIcon" bit="1"></div>
+        <div id="hook3" class="hookIcon" bit="2"></div>
+        <div id="hook4" class="hookIcon" bit="3"></div>
+
+        <div id="clothes1" class="clothesIcon" bit="4"></div>
+        <div id="clothes2" class="clothesIcon" bit="5"></div>
+        <div id="clothes3" class="clothesIcon" bit="6"></div>
+        <div id="clothes4" class="clothesIcon" bit="7"></div>
+
+        <div id="cutters1" class="cuttersIcon" bit="8"></div>
+        <div id="cutters2" class="cuttersIcon" bit="9"></div>
+        <div id="cutters3" class="cuttersIcon" bit="10"></div>
+        <div id="cutters4" class="cuttersIcon" bit="11"></div>
+
+        <!-- DISPLAY PLAYER CUT CALCULATOR -->
+        <div id="playerCutContainer">
+            <div class="playerMoney"><span></span><span></span></div>
+            <div class="playerMoney"><span></span><span></span></div>
+            <div class="playerMoney"><span></span><span></span></div>
+            <div class="playerMoney"><span></span><span></span></div>
+        </div>
+        <span id="totalCut"></span>
     </div>
-    <span id="totalCut"></span>
+
+    <div id="compoundSettings" class="compoundContracted">
+        <div id="compoundMap"></div>
+        <div id="northA" class="lootSpot" bit="0"></div>
+        <div id="northB" class="lootSpot" bit="1"></div>
+        <div id="centralA" class="lootSpot" bit="2"></div>
+        <div id="centralB" class="lootSpot" bit="3"></div>
+        <div id="southA" class="lootSpot" bit="4"></div>
+        <div id="southB" class="lootSpot" bit="5"></div>
+        <div id="basementA" class="lootSpot" bit="6"></div>
+        <div id="basementB" class="lootSpot" bit="7"></div>
+
+        <div id="paintingNorth" class="paintingSpot" bit="0"></div>
+        <div id="paintingCentral" class="paintingSpot" bit="1"></div>
+        <div id="paintingSouth" class="paintingSpot" bit="2"></div>
+        <div id="paintingOfficeA" class="paintingSpot" bit="3"></div>
+        <div id="paintingOfficeB" class="paintingSpot" bit="4"></div>
+        <div id="paintingBasementA" class="paintingSpot" bit="5"></div>
+        <div id="paintingBasementB" class="paintingSpot" bit="6"></div>
+    </div>
 
     <!-- COPY AND DOWNLOAD BUTTONS -->
     <div id="stattextContainer">
@@ -1051,10 +1226,6 @@ document.querySelectorAll("#setupCategories .setupCategory").forEach(function(se
 /* make escape key close, hide, cancel or go back */
 function escapeKey(event)
 {
-    /* quit execution if non escape key is pressed */
-    if (event.keyCode != 27)
-        return;
-
     /* hide beautiful and helpful overlay */
     let overlay = document.querySelector("#overlay");
     if (!overlay.classList.contains("hidden"))
@@ -1085,8 +1256,44 @@ function escapeKey(event)
             }
         });
     }
+
 }
-document.addEventListener("keydown", escapeKey); //set da event
+
+/* TOGGLE COMPOUND MAP */
+function spaceKey(event)
+{
+    var container = document.querySelector("#compoundSettings");
+
+    console.log(container);
+
+    if (container.classList.contains("compoundExpanded"))
+    {
+        container.classList.remove("compoundExpanded");
+        container.classList.add("compoundContracted");
+    }
+    else
+    {
+        container.classList.add("compoundExpanded");
+        container.classList.remove("compoundContracted");
+
+    }
+}
+
+function keyPressed(event)
+{
+    /* quit execution if non escape key is pressed */
+    switch (event.keyCode)
+    {
+        case 27:
+        escapeKey(event);
+        break;
+
+        case 32:
+        spaceKey(event);
+        break;
+    }
+}
+document.addEventListener("keydown", keyPressed); //set da event
 
 /* back button function on click */
 function goBack()
@@ -1155,33 +1362,39 @@ function selectWeapon(event)
     {
         event.target.querySelector(".checkbox").classList.remove("checked");
         settings.missionsBinary -= 1 << 12;
-
-        //suppressor bit is in the variable with points of interests
-        //yes
-        if (event.target.id == "weaponSuppressors") //toggle suppresor bit
-            settings.pois -= 1 << parseInt(event.target.getAttribute("bit"));
     }
     else
     {
-        if (event.target.id != "weaponSuppressors") //do not clear weapons if suppressor is selected
-            document.querySelectorAll("#weaponContainer .setupCategory").forEach(function(weapon)
-            {
-                //do not clear suppressors when weapon is selected
-                if (weapon.id != "weaponSuppressors")
-                    weapon.querySelector(".checkbox").classList.remove("checked");
-            });
+        document.querySelectorAll("#weaponContainer .setupCategory:not(#weaponSuppressors)").forEach(function(weapon)
+        {
+            weapon.querySelector(".checkbox").classList.remove("checked");
+        });
 
         event.target.querySelector(".checkbox").classList.add("checked");
         settings.missionsBinary += 1 << 12;
-
-        if (event.target.id == "weaponSuppressors") //toggle suppressor bit
-            settings.pois += 1 << parseInt(event.target.getAttribute("bit"));
     }
 }
-document.querySelectorAll("#weaponContainer .setupCategory").forEach(function(weapon)
+document.querySelectorAll("#weaponContainer .setupCategory:not(#weaponSuppressors)").forEach(function(weapon)
 {
     weapon.addEventListener("click", selectWeapon);
 });
+
+function selectSuppressors(event)
+{
+    let bit = parseInt(event.target.getAttribute("bit"));
+    let checkbox = event.target.querySelector(".checkbox");
+    if (checkbox.classList.contains("checked"))
+    {
+        checkbox.classList.remove("checked");
+        settings.pois -= 1 << parseInt(event.target.getAttribute("bit"));
+    }
+    else
+    {
+        checkbox.classList.add("checked");
+        settings.pois += 1 << parseInt(event.target.getAttribute("bit"));
+    }
+}
+document.querySelector("#weaponSuppressors").addEventListener("click", selectSuppressors);
 
 /* mark disruptions */
 function markDisruption(event)
@@ -1298,6 +1511,9 @@ document.querySelectorAll("#compoundLootContainer .setupCategory").forEach(funct
 {
     compoundLoot.addEventListener("click", markCompoundLoot);
 });
+
+/* COMPOUND MAP */
+
 
 /* calculate loot values */
 
