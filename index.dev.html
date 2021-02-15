@@ -50,7 +50,7 @@ body
     background-repeat: no-repeat;
     background-size: 100% 100%;
     position: absolute;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
     overflow: hidden;
 }
 #lootPic
@@ -121,7 +121,7 @@ body
     border-radius: 2px;
     display: inline-block;
     margin-right: -15%;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
     margin-bottom: 3%;
 }
 .lootObject:hover
@@ -185,7 +185,7 @@ body
     background-image: url(img/element.png);
     background-size: 100% 110%;
     padding-left: 0.5vw;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
     color: transparent;
     text-shadow: 0 0 0.1vw #ffffffab;
     padding-top: 0px;
@@ -212,7 +212,7 @@ body
 }
 .backButton
 {
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
     color: transparent;
     text-shadow: 0 0 0.1vw #ffffffab;
     height: 3vw;
@@ -328,7 +328,7 @@ body
     width: 1.4vw;
     height: 1.7vw;
     position: absolute;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
 }
 .truckOn
 {
@@ -366,7 +366,7 @@ body
     width: 1.7vw;
     height: 1.7vw;
     position: absolute;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
 }
 .hookOn
 {
@@ -399,7 +399,7 @@ body
     width: 1.7vw;
     height: 1.7vw;
     position: absolute;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
 }
 .clothesOn
 {
@@ -432,7 +432,7 @@ body
     width: 1.7vw;
     height: 1.7vw;
     position: absolute;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
 }
 .cuttersOn
 {
@@ -533,7 +533,7 @@ body
 {
     border: 0.2vw solid #8e3232;
     border-radius: 0.2vw;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
     background-color: #1e1516c2;
 }
 .statTextButton:after
@@ -578,7 +578,7 @@ body
     position: absolute;
     width: 100vw;
     height: 100vh;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
 }
 #elRubioSafe
 {
@@ -589,7 +589,7 @@ body
     text-shadow: 0 0 0.1vw #411c1be6;
     padding-left: 1vw;
     right: 8.5vw;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
 }
 #compoundSettings
 {
@@ -598,7 +598,7 @@ body
     left: 34.9vw;
     width: 58.4vw;
     height: 47.3vw;
-    transition: clip-path 1s linear;
+    transition: clip-path 0.7s linear;
 }
 .compoundExpanded
 {
@@ -606,7 +606,11 @@ body
 }
 .compoundContracted
 {
-    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
+}
+.compoundHidden
+{
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
 }
 #compoundMap
 {
@@ -630,23 +634,28 @@ body
     text-shadow: 0 0 0.1vw #8c3d40;
     text-align: center;
     background-color: #1a1414de;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
     user-select: none;
+}
+.lootSpot:before
+{
+    top: 0.1vw;
+    position: relative;
 }
 #northA
 {
     top: 29.5vw;
-    left: 43.5vw;
+    left: 45.7vw;
 }
 #northB
 {
-    top: 29.5vw;
-    left: 45.7vw;
+    top: 21.5vw;
+    left: 29.8vw;
 }
 #centralA
 {
-    top: 21.5vw;
-    left: 29.8vw;
+    top: 29.5vw;
+    left: 43.5vw;
 }
 #centralB
 {
@@ -656,12 +665,12 @@ body
 #southA
 {
     top: 34vw;
-    left: 22vw;
+    left: 24.2vw;
 }
 #southB
 {
     top: 34vw;
-    left: 24.2vw;
+    left: 22vw;
 }
 #basementA
 {
@@ -673,6 +682,7 @@ body
     top: 22.5vw;
     left: 19.8vw;
 }
+.lootOn  {}
 .contentCash:before
 {
     content: "$";
@@ -706,7 +716,7 @@ body
     text-shadow: 0 0 0.1vw #8c3d40;
     text-align: center;
     background-color: #1a1414de;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
     user-select: none;
 }
 #paintingNorth
@@ -744,6 +754,96 @@ body
     top: 20vw;
     left: 19.8vw;
 }
+#mapButton
+{
+    position: absolute;
+    top: 53.4vw;
+    left: 74.5vw;
+    width: 5.4vw;
+    height: 2.1vw;
+    cursor: url(img/cursor.png) 10 2,pointer;
+}
+#secondaryLootSelector
+{
+    position: absolute;
+    top: 10vw;
+    left: 10vw;
+    width: 10vw;
+    z-index: 4;
+}
+.lootOption
+{
+    background-color: #1d1415;
+    cursor: url(img/cursor.png) 10 2,pointer;
+    border: 0.3vw solid #832929;
+    user-select: none;
+}
+.lootOption span
+{
+    position: relative;
+    top: -0.3vw;
+    padding-left: 2vw;
+    height: 2vw;
+    font-size: 1.5vw;
+    line-height: 2.5vw;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #ffffffab;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    pointer-events: none;
+}
+.lootOption::before
+{
+    border-radius: 50%;
+    position: relative;
+    left: 0.7vw;
+    top: 0.3vw;
+    border: 0.3vw solid #832929;
+    content: "";
+    display: inline-block;
+    height: 1.5vw;
+    width: 1.5vw;
+}
+.lootOption:hover
+{
+    background-color: #ffffffab;
+    text-shadow: 0 0 0.1vw #000;
+    transition: background-color 0.5s linear;
+}
+.lootOptionSeparator
+{
+    border: 1px dotted #832929;
+    margin: 0.5vw 0vw 0.5vw 0vw;
+}
+.cashOption::before
+{
+    background-color: #525b54;
+}
+.cokeOption::before
+{
+    background-color: white;
+}
+.goldOption::before
+{
+    background-color: gold;
+}
+.weedOption::before
+{
+    background-color: green;
+}
+.emptyOption::before
+{
+    background-color: transparent;
+}
+#secondarySelectorOverlay
+{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 3;
+    user-select: none;
+}
+
 /* TUTORIAL OVERLAY STYLES */
 #overlay
 {
@@ -764,7 +864,7 @@ body
     width: 100vw;
     height: 100vh;
     position: absolute;
-    cursor: url(img/cursor.png),pointer;
+    cursor: url(img/cursor.png) 10 2,pointer;
 }
 .arrowLeft:before
 {
@@ -1004,7 +1104,6 @@ body
         </div>
     </div>
 
-
     <!-- PRIMARY LOOT SELECTOR -->
     <div id="lootFrame">
         <div id="lootSelector" class="hidden">
@@ -1069,6 +1168,8 @@ body
         <span id="totalCut"></span>
     </div>
 
+    <div id="mapButton"></div>
+
     <div id="compoundSettings" class="compoundContracted">
         <div id="compoundMap"></div>
         <div id="northA" class="lootSpot" bit="0"></div>
@@ -1088,6 +1189,17 @@ body
         <div id="paintingBasementA" class="paintingSpot" bit="5"></div>
         <div id="paintingBasementB" class="paintingSpot" bit="6"></div>
     </div>
+
+    <!-- secondary loot selector -->
+    <div id="secondaryLootSelector" class="hidden">
+        <div class="lootOption goldOption"><span>Gold</span></div>
+        <div class="lootOption emptyOption"><span>Empty</span></div>
+        <div class="lootOptionSeparator"></div>
+        <div class="lootOption cashOption"><span>Cash</span></div>
+        <div class="lootOption cokeOption"><span>Coke</span></div>
+        <div class="lootOption weedOption"><span>Weed</span></div>
+    </div>
+    <div id="secondarySelectorOverlay" class="hidden"></div>
 
     <!-- COPY AND DOWNLOAD BUTTONS -->
     <div id="stattextContainer">
@@ -1142,7 +1254,12 @@ let settings =
     vehicleValue: 0,
     takeOfficeSafe: true,
     missionsBinary: 1+1024+2048, // gather intel + mandatory cutter + cloner
-    pois: 16384+65536 //power station + control tower
+    pois: 16384+65536, //power station + control tower
+    compoundCash: 0,
+    compoundCoke: 0,
+    compoundGold: 0,
+    compoundWeed: 0,
+    compoundPainting: 0
 };
 
 /* FUNCTIONALITY */
@@ -1256,7 +1373,6 @@ function escapeKey(event)
             }
         });
     }
-
 }
 
 /* TOGGLE COMPOUND MAP */
@@ -1264,8 +1380,7 @@ function spaceKey(event)
 {
     var container = document.querySelector("#compoundSettings");
 
-    console.log(container);
-
+    if(document.querySelector("#overlay").classList.contains("hidden"))
     if (container.classList.contains("compoundExpanded"))
     {
         container.classList.remove("compoundExpanded");
@@ -1275,9 +1390,9 @@ function spaceKey(event)
     {
         container.classList.add("compoundExpanded");
         container.classList.remove("compoundContracted");
-
-    }
+    };
 }
+document.querySelector("#mapButton").addEventListener("click", spaceKey);
 
 function keyPressed(event)
 {
@@ -1348,9 +1463,6 @@ document.querySelectorAll("#approachVehiclesContainer .setupCategory").forEach(f
 });
 
 /* unlock equipment */
-//all on by default
-//TODO maybe: customize locations n shits
-
 /* select weapon */
 function selectWeapon(event)
 {
@@ -1513,9 +1625,126 @@ document.querySelectorAll("#compoundLootContainer .setupCategory").forEach(funct
 });
 
 /* COMPOUND MAP */
+//convert pixel to vx
+//to display secondary setter next to mouse cursor
+function convertPXToVW(px)
+{
+	return px * (100 / document.documentElement.clientWidth);
+}
+function convertPXToVH(px)
+{
+	return px * (100 / document.documentElement.clientHeight);
+}
+//close secondary selector at various occasions
+function closeCompoundSecondarySelector()
+{
+    document.querySelector("#secondarySelectorOverlay").classList.add("hidden");
+    let selector = document.querySelector("#secondaryLootSelector");
+    selector.removeAttribute("bit");
+    selector.classList.add("hidden");
 
+}
 
-/* calculate loot values */
+//select secondary loot from selector
+function selectCompoundSecondary(event)
+{
+    let target = event.target;
+
+    let selector = document.querySelector("#secondaryLootSelector");
+    let bit = parseInt(selector.getAttribute("bit"));
+    let locationID = selector.getAttribute("location");
+    let location = document.querySelector("#" + locationID);
+
+    let loot = target.querySelector("span").textContent.toLowerCase();
+
+    if (loot == "cash")
+    {
+        settings.compoundCash += 1 << bit;
+        location.classList.add("contentCash");
+    }
+    else if (loot == "coke")
+    {
+        settings.compoundCoke += 1 << bit;
+        location.classList.add("contentCoke");
+    }
+    else if (loot == "gold")
+    {
+        settings.compoundGold += 1 << bit;
+        location.classList.add("contentGold");
+    }
+    else if (loot == "weed")
+    {
+        settings.compoundWeed += 1 << bit;
+        location.classList.add("contentWeed");
+    }
+    else // if (loot == "empty")
+    {
+        if (location.classList.contains("contentCash"))
+            settings.compoundCash -= 1 << bit;
+        else if (location.classList.contains("contentCoke"))
+            settings.compoundCoke -= 1 << bit;
+        else if (location.classList.contains("contentGold"))
+            settings.compoundGold -= 1 << bit;
+        else if (location.classList.contains("contentWeed"))
+            settings.compoundWeed -= 1 << bit;
+
+        location.className = "lootSpot";
+    }
+
+    closeCompoundSecondarySelector();
+}
+document.querySelectorAll("#secondaryLootSelector .lootOption").forEach(function(option)
+{
+    option.addEventListener("click", selectCompoundSecondary);
+});
+
+//secondary loot selector
+function openSecondarySelector(event)
+{
+    let target = event.target;
+
+    let selector = document.querySelector("#secondaryLootSelector");
+    selector.style.top = (convertPXToVH(event.clientY) + 1) + "vh";
+    selector.style.left = (convertPXToVW(event.clientX) + 1) + "vw";
+
+    selector.classList.remove("hidden");
+    document.querySelector("#secondarySelectorOverlay").classList.remove("hidden");
+
+    let bit = target.getAttribute("bit");
+    selector.setAttribute("bit", bit);
+
+    let location = target.id;
+    selector.setAttribute("location", location);
+}
+document.querySelectorAll(".lootSpot").forEach(function(lootSpot)
+{
+    lootSpot.addEventListener("click", openSecondarySelector);
+});
+
+document.querySelector("#secondarySelectorOverlay").addEventListener("click", closeCompoundSecondarySelector);
+
+/* SELECT PAINTING SPOTS */
+function togglePaintingLocation(event)
+{
+    let target = event.target;
+    let bit = parseInt(target.getAttribute("bit"));
+    if (target.classList.contains("paintingOn"))
+    {
+        target.classList.remove("paintingOn");
+        settings.compoundPainting -= 1 << bit;
+    }
+    else
+    {
+        target.classList.add("paintingOn");
+        settings.compoundPainting += 1 << bit;
+    }
+}
+document.querySelectorAll(".paintingSpot").forEach(function(spot)
+{
+    spot.addEventListener("click", togglePaintingLocation);
+});
+
+/* CALCULATE LOOT VALUES */
 
 /* reverses percentage from current value and known percentage */
 function reversePercentage(value, percent)
@@ -1934,6 +2163,7 @@ function generateStattext()
     control tower
     int 65536, bit 16 https://i.imgur.com/XZ6WiHV.jpg
     */
+
     s.push("$MPx_H4CNF_BS_GEN");
     s.push(settings.pois);
 
@@ -2001,25 +2231,80 @@ function generateStattext()
     s.push("$MPx_H4CNF_APPROACH");
     s.push("-1");
 
+    /* COMPOUND BITS
+    blank map https://i.imgur.com/IVqpjU3.jpg
+
+    secondary loot
+    int 1, bin 0, north a https://i.imgur.com/zANJYuc.jpg
+    int 2, bin 1, north b https://i.imgur.com/hnKHMbi.jpeg
+    int 4, bin 2, central a https://i.imgur.com/Q01PQfz.jpg
+    int 8, bin 3, central b https://i.imgur.com/4nYIRQ3.jpg
+    int 16, bin 4, south a https://i.imgur.com/p081Qi6.jpeg
+    int 32, bin 5, south b https://i.imgur.com/B6l1wwj.jpg
+    int 64, bin 6, basement a https://i.imgur.com/RqN3oUG.jpg
+    int 128, bin 7, basement b https://i.imgur.com/dfzSX6o.jpg
+
+    painting
+    int 1, bin 0, north https://i.imgur.com/IIHw0t9.jpeg
+    int 2, bin 1, central https://i.imgur.com/kxM1IX2.jpg
+    int 3, bin 2, south https://i.imgur.com/eGCAnx6.jpg
+    int 4, bin 3, office a https://i.imgur.com/8iYo4y5.jpg
+    int 5, bin 4, office b https://i.imgur.com/UPMedAW.jpeg
+    int 6, bin 5, basement a https://i.imgur.com/Lg06n2R.jpg
+    int 7, bin 6, basement b https://i.imgur.com/Qdbk18Y.jpg
+    */
+
+
+    /* ISLAND BITS
+    ref https://i.imgur.com/ccAahxj.jpg
+    int 1, bin 0, https://i.imgur.com/jPs2gQs.jpg
+    int 2, bin 1, https://i.imgur.com/nKRx1lp.jpeg
+    int 4, bin 2, https://i.imgur.com/e2qPz3q.jpeg
+    int 8, bin 3, https://i.imgur.com/mFkJmLm.jpeg
+    int 16, bin 4 https://i.imgur.com/iFkXVzB.jpeg
+    int 32, bin 5, https://i.imgur.com/huQWq9L.jpeg
+    int 64, bin 6, https://i.imgur.com/JTWhO37.jpeg
+    int 128, bin 7, https://i.imgur.com/gSgPWzL.jpg
+    int 256, bin 8, https://i.imgur.com/jqzNjhY.jpg
+    int 512, bin 9, https://i.imgur.com/HMKaDGd.jpeg
+    int 1024, bin 10 https://i.imgur.com/i5aVuuR.jpg
+    int 2048, bin 11 https://i.imgur.com/Wwadzhm.jpeg
+    int 4096, bin 12 https://i.imgur.com/UkHrpkP.jpeg
+    int 8192, bin 13 https://i.imgur.com/zgfeofw.jpg
+    int 16384, bin 14 https://i.imgur.com/c3wgI6J.jpeg
+    int 32768, bin 15, https://i.imgur.com/RDTQruY.jpeg
+    int 65536, bin 16, https://i.imgur.com/fX08CoH.jpeg
+    int 131072, bin 17, https://i.imgur.com/jys5OaO.jpg
+    int 262144, bin 18, https://i.imgur.com/uiIYmOS.jpg
+    524288, bin 19, https://i.imgur.com/L8NW8QC.jpg
+    1048576, bin 20, https://i.imgur.com/AoCoRQ0.jpeg
+    2097152, bin 21, https://i.imgur.com/qGcwBvn.jpg
+    4194304, bin 22, https://i.imgur.com/ivsNPQH.jpg
+    8388608, bin 23, https://i.imgur.com/9sqxEql.jpg
+    */
     //secondary loot enabled or not
     s.push("$MPx_H4LOOT_CASH_I");
     s.push(settings.islandLoot == "cash" ? "-1" : "0");
     s.push("$MPx_H4LOOT_CASH_C");
-    s.push(settings.compoundLoot == "cash" ? "-1" : "0");
+    s.push(settings.compoundCash.toString());
+
     s.push("$MPx_H4LOOT_WEED_I");
     s.push(settings.islandLoot == "weed" ? "-1" : "0");
     s.push("$MPx_H4LOOT_WEED_C");
-    s.push(settings.compoundLoot == "weed" ? "-1" : "0");
+    s.push(settings.compoundWeed.toString());
+
     s.push("$MPx_H4LOOT_COKE_I");
     s.push(settings.islandLoot == "coke" ? "-1" : "0");
     s.push("$MPx_H4LOOT_COKE_C");
-    s.push(settings.compoundLoot == "coke" ? "-1" : "0");
+    s.push(settings.compoundCoke.toString());
+
     s.push("$MPx_H4LOOT_GOLD_I");
     s.push(settings.islandLoot == "gold" ? "-1" : "0");
     s.push("$MPx_H4LOOT_GOLD_C");
-    s.push(settings.compoundLoot == "gold" ? "-1" : "0");
+    s.push(settings.compoundGold.toString());
+
     s.push("$MPx_H4LOOT_PAINT");
-    s.push(settings.painting ? "-1" : "0");
+    s.push(settings.compoundPainting.toString());
 
     //set difficulty
     s.push("$MPx_H4_PROGRESS");
@@ -2067,21 +2352,25 @@ function generateStattext()
     s.push("$MPx_H4LOOT_CASH_I_SCOPED");
     s.push(settings.islandLoot == "cash" ? "-1" : "0");
     s.push("$MPx_H4LOOT_CASH_C_SCOPED");
-    s.push(settings.compoundLoot == "cash" ? "-1" : "0");
+    s.push(settings.compoundCash.toString());
+
     s.push("$MPx_H4LOOT_WEED_I_SCOPED");
     s.push(settings.islandLoot == "weed" ? "-1" : "0");
     s.push("$MPx_H4LOOT_WEED_C_SCOPED");
-    s.push(settings.compoundLoot == "weed" ? "-1" : "0");
+    s.push(settings.compoundWeed.toString());
+
     s.push("$MPx_H4LOOT_COKE_I_SCOPED");
     s.push(settings.islandLoot == "coke" ? "-1" : "0");
     s.push("$MPx_H4LOOT_COKE_C_SCOPED");
-    s.push(settings.compoundLoot == "coke" ? "-1" : "0");
+    s.push(settings.compoundCoke.toString());
+
     s.push("$MPx_H4LOOT_GOLD_I_SCOPED");
     s.push(settings.islandLoot == "gold" ? "-1" : "0");
     s.push("$MPx_H4LOOT_GOLD_C_SCOPED");
-    s.push(settings.compoundLoot == "gold" ? "-1" : "0");
+    s.push(settings.compoundGold.toString());
+
     s.push("$MPx_H4LOOT_PAINT_SCOPED");
-    s.push(settings.painting ? "-1" : "0");
+    s.push(settings.compoundPainting.toString());
 
     //no idea what this does, can guess by the name though
     s.push("$MPx_H4_MISSIONS");
