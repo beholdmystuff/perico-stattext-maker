@@ -598,7 +598,7 @@ body
     left: 34.9vw;
     width: 58.4vw;
     height: 47.3vw;
-    transition: clip-path 0.7s linear;
+    transition: clip-path 0.5s linear;
 }
 .compoundExpanded
 {
@@ -1393,13 +1393,8 @@ function spaceKey(event)
         setTimeout(function()
         {
             let container = document.querySelector("#compoundSettings")
-            container.style.transition = "clip-path 0.0s linear";
             container.classList.remove("compoundHidden");
             container.classList.add("compoundContracted");
-            setTimeout(function()
-            {
-                container.style.transition = "clip-path 0.7s linear";
-            }, 0);
             togglingCompoundMap = false;
         }, 1000);
     }
@@ -1722,10 +1717,18 @@ function openSecondarySelector(event)
     let target = event.target;
 
     let selector = document.querySelector("#secondaryLootSelector");
-    selector.style.top = (convertPXToVH(event.clientY) + 1) + "vh";
+    let top = (convertPXToVH(event.clientY) + 1);
+    selector.style.top = top + "vh";
     selector.style.left = (convertPXToVW(event.clientX) + 1) + "vw";
 
     selector.classList.remove("hidden");
+    let height = convertPXToVH(selector.offsetHeight);
+    console.log(height);
+    console.log(100 - top);
+    console.log(100 - height);
+
+    if ((100 - top) < height)
+        selector.style.top = 100 - height + "vh";
     document.querySelector("#secondarySelectorOverlay").classList.remove("hidden");
 
     let bit = target.getAttribute("bit");
