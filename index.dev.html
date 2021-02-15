@@ -606,7 +606,7 @@ body
 }
 .compoundContracted
 {
-    clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 }
 .compoundHidden
 {
@@ -1376,20 +1376,38 @@ function escapeKey(event)
 }
 
 /* TOGGLE COMPOUND MAP */
+let togglingCompoundMap = false;
 function spaceKey(event)
 {
+    if (togglingCompoundMap)
+        return;
+
+    togglingCompoundMap = true;
     var container = document.querySelector("#compoundSettings");
 
     if(document.querySelector("#overlay").classList.contains("hidden"))
     if (container.classList.contains("compoundExpanded"))
     {
         container.classList.remove("compoundExpanded");
-        container.classList.add("compoundContracted");
+        container.classList.add("compoundHidden");
+        setTimeout(function()
+        {
+            let container = document.querySelector("#compoundSettings")
+            container.style.transition = "clip-path 0.0s linear";
+            container.classList.remove("compoundHidden");
+            container.classList.add("compoundContracted");
+            setTimeout(function()
+            {
+                container.style.transition = "clip-path 0.7s linear";
+            }, 0);
+            togglingCompoundMap = false;
+        }, 1000);
     }
     else
     {
         container.classList.add("compoundExpanded");
         container.classList.remove("compoundContracted");
+        setTimeout(function(){togglingCompoundMap = false;}, 1000);
     };
 }
 document.querySelector("#mapButton").addEventListener("click", spaceKey);
