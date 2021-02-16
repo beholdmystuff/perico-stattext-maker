@@ -149,6 +149,7 @@ body
 #moneyLimits
 {
     background-image: url(img/prices_frames.png);
+    background-repeat: no-repeat;
     background-size: 100% 100%;
     position: absolute;
     width: 14.9vw;
@@ -922,12 +923,16 @@ body
 /* GTA STYLE MAP TOGGLE BUTTON */
 #mapButton
 {
+    background-image: url(img/map_button.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
     position: absolute;
-    top: 53.4vw;
-    left: 74.5vw;
+    top: 48.9vw;
+    left: 62.2vw;
     width: 5.4vw;
     height: 2.1vw;
     cursor: url(img/cursor.png) 10 2,pointer;
+    z-index: 1;
 }
 
 /* LOOT SELECTOR "CONTEXT" MENU */
@@ -1700,28 +1705,30 @@ function spaceKey(event)
     if (togglingCompoundMap)
         return;
 
-    togglingCompoundMap = true;
     var container = document.querySelector("#compoundSettings");
 
     if(document.querySelector("#overlay").classList.contains("hidden"))
-    if (container.classList.contains("compoundExpanded"))
     {
-        container.classList.remove("compoundExpanded");
-        container.classList.add("compoundHidden");
-        setTimeout(function()
+        togglingCompoundMap = true;
+        if (container.classList.contains("compoundExpanded"))
         {
-            let container = document.querySelector("#compoundSettings")
-            container.classList.remove("compoundHidden");
-            container.classList.add("compoundContracted");
-            togglingCompoundMap = false;
-        }, 1000);
+            container.classList.remove("compoundExpanded");
+            container.classList.add("compoundHidden");
+            setTimeout(function()
+            {
+                let container = document.querySelector("#compoundSettings")
+                container.classList.remove("compoundHidden");
+                container.classList.add("compoundContracted");
+                setTimeout(function(){togglingCompoundMap = false;}, 500);
+            }, 500);
+        }
+        else
+        {
+            container.classList.add("compoundExpanded");
+            container.classList.remove("compoundContracted");
+            setTimeout(function(){togglingCompoundMap = false;}, 1000);
+        };
     }
-    else
-    {
-        container.classList.add("compoundExpanded");
-        container.classList.remove("compoundContracted");
-        setTimeout(function(){togglingCompoundMap = false;}, 1000);
-    };
 }
 document.querySelector("#mapButton").addEventListener("click", spaceKey);
 
