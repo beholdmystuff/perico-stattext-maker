@@ -1288,7 +1288,7 @@ body
         <div id="equipmentContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Equipment</div>
             <div id="equipmentDemoCharges" class="setupCategory" bit="8"><div class="checkbox"></div><span>Demolution Charges</span></div>
-            <div id="equipmentTorch" class="setupCategory" bit="9"><div class="checkbox"></div><span>Cutting Torch</span></div>
+            <!-- <div id="equipmentTorch" class="setupCategory" bit="9"><div class="checkbox"></div><span>Cutting Torch</span></div> -->
         </div>
         <!-- <div id="islandLootContainer" class="setupCategoryContainer hidden">
             <div class="backButton"> &lt; Island Loot</div>
@@ -1524,7 +1524,7 @@ let settings =
     difficulty: "normal", //cayo.difficulty
     vehicleValue: 0,
     takeOfficeSafe: true,
-    missionsBinary: 1+1024+2048, // gather intel + mandatory cutter + cloner
+    missionsBinary: 1+1024+2048+512, // gather intel + mandatory cutter + cloner + torch
     pois: 16384+65536, //power station + control tower
     compoundCash: 0,
     compoundCoke: 0,
@@ -1987,6 +1987,21 @@ function closeIslandSecondarySelector()
     selector.classList.add("hidden");
 }
 
+/* clear secondary spot */
+function clearIslandSecondary(location, bit)
+{
+    if (location.classList.contains("contentCash"))
+        settings.islandCash -= 1 << bit;
+    else if (location.classList.contains("contentCoke"))
+        settings.islandCoke -= 1 << bit;
+    else if (location.classList.contains("contentGold"))
+        settings.islandGold -= 1 << bit;
+    else if (location.classList.contains("contentWeed"))
+        settings.islandWeed -= 1 << bit;
+
+    location.className = "lootSpot";
+}
+
 //select compound secondary loot from selector
 function selectIslandSecondary(event)
 {
@@ -1997,7 +2012,7 @@ function selectIslandSecondary(event)
     let locationID = selector.getAttribute("location");
     let location = document.querySelector("#" + locationID);
 
-    console.log(bit);
+    clearIslandSecondary(location, bit);
 
     let loot = target.querySelector("span").textContent.toLowerCase();
 
@@ -2020,19 +2035,6 @@ function selectIslandSecondary(event)
     {
         settings.islandWeed += 1 << bit;
         location.classList.add("contentWeed");
-    }
-    else // if (loot == "empty")
-    {
-        if (location.classList.contains("contentCash"))
-            settings.islandCash -= 1 << bit;
-        else if (location.classList.contains("contentCoke"))
-            settings.islandCoke -= 1 << bit;
-        else if (location.classList.contains("contentGold"))
-            settings.islandGold -= 1 << bit;
-        else if (location.classList.contains("contentWeed"))
-            settings.islandWeed -= 1 << bit;
-
-        location.className = "lootSpot";
     }
 
     closeIslandSecondarySelector();
@@ -2082,7 +2084,22 @@ function closeCompoundSecondarySelector()
     selector.classList.add("hidden");
 }
 
-//select island secondary loot from selector
+/* clear secondary spot */
+function clearCompoundSecondary(location, bit)
+{
+    if (location.classList.contains("contentCash"))
+        settings.compoundCash -= 1 << bit;
+    else if (location.classList.contains("contentCoke"))
+        settings.compoundCoke -= 1 << bit;
+    else if (location.classList.contains("contentGold"))
+        settings.compoundGold -= 1 << bit;
+    else if (location.classList.contains("contentWeed"))
+        settings.compoundWeed -= 1 << bit;
+
+    location.className = "lootSpot";
+}
+
+//select compound secondary loot from selector
 function selectCompoundSecondary(event)
 {
     let target = event.target;
@@ -2091,6 +2108,8 @@ function selectCompoundSecondary(event)
     let bit = parseInt(selector.getAttribute("bit"));
     let locationID = selector.getAttribute("location");
     let location = document.querySelector("#" + locationID);
+
+    clearCompoundSecondary(location, bit);
 
     let loot = target.querySelector("span").textContent.toLowerCase();
 
@@ -2113,19 +2132,6 @@ function selectCompoundSecondary(event)
     {
         settings.compoundWeed += 1 << bit;
         location.classList.add("contentWeed");
-    }
-    else // if (loot == "empty")
-    {
-        if (location.classList.contains("contentCash"))
-            settings.compoundCash -= 1 << bit;
-        else if (location.classList.contains("contentCoke"))
-            settings.compoundCoke -= 1 << bit;
-        else if (location.classList.contains("contentGold"))
-            settings.compoundGold -= 1 << bit;
-        else if (location.classList.contains("contentWeed"))
-            settings.compoundWeed -= 1 << bit;
-
-        location.className = "lootSpot";
     }
 
     closeCompoundSecondarySelector();
