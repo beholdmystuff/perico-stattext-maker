@@ -2762,53 +2762,80 @@ function generateStattext()
     8388608, bin 23, https://i.imgur.com/9sqxEql.jpg
     */
 
-    //secondary loot enabled or not
-    s.push("$MPx_H4LOOT_CASH_I");
-    s.push(settings.islandCash.toString());
-    s.push("$MPx_H4LOOT_CASH_C");
-    s.push(settings.compoundCash.toString());
+    /* SECONDARY LOOT LOCATIONS AND SCOPES */
 
-    s.push("$MPx_H4LOOT_WEED_I");
-    s.push(settings.islandWeed.toString());
-    s.push("$MPx_H4LOOT_WEED_C");
-    s.push(settings.compoundWeed.toString());
+    //CASH
+    if (settings.islandCash > 0)
+    {
+        s.push("$MPx_H4LOOT_CASH_I");
+        s.push(settings.islandCash.toString());
+        s.push("$MPx_H4LOOT_CASH_I_SCOPED");
+        s.push(settings.islandCash.toString());
+    }
+    if (settings.compoundCash > 0)
+    {
+        s.push("$MPx_H4LOOT_CASH_C");
+        s.push(settings.compoundCash.toString());
+        s.push("$MPx_H4LOOT_CASH_C_SCOPED");
+        s.push(settings.compoundCash.toString());
+    }
 
-    s.push("$MPx_H4LOOT_COKE_I");
-    s.push(settings.islandCoke.toString());
-    s.push("$MPx_H4LOOT_COKE_C");
-    s.push(settings.compoundCoke.toString());
+    //COKE
+    if (settings.islandCoke > 0)
+    {
+        s.push("$MPx_H4LOOT_COKE_I");
+        s.push(settings.islandCoke.toString());
+        s.push("$MPx_H4LOOT_COKE_I_SCOPED");
+        s.push(settings.islandCoke.toString());
+    }
+    if (settings.compoundCoke > 0)
+    {
+        s.push("$MPx_H4LOOT_COKE_C");
+        s.push(settings.compoundCoke.toString());
+        s.push("$MPx_H4LOOT_COKE_C_SCOPED");
+        s.push(settings.compoundCoke.toString());
+    }
 
-    s.push("$MPx_H4LOOT_GOLD_I");
-    s.push(settings.islandGold.toString());
-    s.push("$MPx_H4LOOT_GOLD_C");
-    s.push(settings.compoundGold.toString());
+    //GOLD
+    if (settings.islandGold > 0)
+    {
+        s.push("$MPx_H4LOOT_GOLD_I");
+        s.push(settings.islandGold.toString());
+        s.push("$MPx_H4LOOT_GOLD_I_SCOPED");
+        s.push(settings.islandGold.toString());
+    }
+    if (settings.compoundGold > 0)
+    {
+        s.push("$MPx_H4LOOT_GOLD_C");
+        s.push(settings.compoundGold.toString());
+        s.push("$MPx_H4LOOT_GOLD_C_SCOPED");
+        s.push(settings.compoundGold.toString());
+    }
 
-    s.push("$MPx_H4LOOT_PAINT");
-    s.push(settings.compoundPainting.toString());
+    //WEED
+    if (settings.islandWeed > 0)
+    {
+        s.push("$MPx_H4LOOT_WEED_I");
+        s.push(settings.islandWeed.toString());
+        s.push("$MPx_H4LOOT_WEED_I_SCOPED");
+        s.push(settings.islandWeed.toString());
+    }
+    if (settings.compoundWeed > 0)
+    {
+        s.push("$MPx_H4LOOT_WEED_C");
+        s.push(settings.compoundWeed.toString());
+        s.push("$MPx_H4LOOT_WEED_C_SCOPED");
+        s.push(settings.compoundWeed.toString());
+    }
 
-    //secondary loot scoped or not
-    s.push("$MPx_H4LOOT_CASH_I_SCOPED");
-    s.push(settings.islandCash.toString());
-    s.push("$MPx_H4LOOT_CASH_C_SCOPED");
-    s.push(settings.compoundCash.toString());
-
-    s.push("$MPx_H4LOOT_WEED_I_SCOPED");
-    s.push(settings.islandWeed.toString());
-    s.push("$MPx_H4LOOT_WEED_C_SCOPED");
-    s.push(settings.compoundWeed.toString());
-
-    s.push("$MPx_H4LOOT_COKE_I_SCOPED");
-    s.push(settings.islandCoke.toString());
-    s.push("$MPx_H4LOOT_COKE_C_SCOPED");
-    s.push(settings.compoundCoke.toString());
-
-    s.push("$MPx_H4LOOT_GOLD_I_SCOPED");
-    s.push(settings.islandGold.toString());
-    s.push("$MPx_H4LOOT_GOLD_C_SCOPED");
-    s.push(settings.compoundGold.toString());
-
-    s.push("$MPx_H4LOOT_PAINT_SCOPED");
-    s.push(settings.compoundPainting.toString());
+    //PAINTING
+    if (settings.compoundPainting > 0)
+    {
+        s.push("$MPx_H4LOOT_PAINT");
+        s.push(settings.compoundPainting.toString());
+        s.push("$MPx_H4LOOT_PAINT_SCOPED");
+        s.push(settings.compoundPainting.toString());
+    }
 
     //set cash value
     console.log(settings.defaultLootPrice)
