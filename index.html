@@ -2318,19 +2318,19 @@ function calculateTake()
 
     if (singleBagLoad) //might be undefined when no primary selected, we don't want 'undefined' in settings
     {
-        if (settings.islandCash > 0 || settings.compoundCash > 0)
+        if (settings.islandCash > 0 || settings.compoundCash > 0 || !settings.defaultLootPrice)
             calculateCashValue(singleBagLoad);
 
-        if (settings.islandCoke > 0 || settings.compoundCoke > 0)
+        if (settings.islandCoke > 0 || settings.compoundCoke > 0 || !settings.defaultLootPrice)
             calculateCokeValue(singleBagLoad);
 
-        if (settings.islandGold > 0 || settings.compoundGold > 0)
+        if (settings.islandGold > 0 || settings.compoundGold > 0 || !settings.defaultLootPrice)
             calculateGoldValue(singleBagLoad);
 
-        if (settings.compoundPainting > 0 || settings.compoundPainting > 0)
+        if (settings.compoundPainting > 0 || settings.compoundPainting > 0 || !settings.defaultLootPrice)
             calculatePaintingValue(singleBagLoad);
 
-        if (settings.islandWeed > 0 || settings.compoundWeed > 0)
+        if (settings.islandWeed > 0 || settings.compoundWeed > 0 || !settings.defaultLootPrice)
             calculateWeedValue(singleBagLoad);
     }
 
@@ -2838,11 +2838,9 @@ function generateStattext()
     }
 
     //set cash value
-    console.log(settings.defaultLootPrice)
     if (settings.defaultLootPrice == false)
     {
 
-        console.log(settings.cashValue)
         if (settings.cashValue)
         {
             s.push("$MPx_H4LOOT_CASH_V");
