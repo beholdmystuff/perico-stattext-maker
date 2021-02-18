@@ -1513,7 +1513,7 @@ let cayo =
     npcCutPercentage: 12,
     hardModeMultiplier: 1.1,
     defaultCutLimit: 2550000,
-    defaultTakeLimit: 10818212,
+    defaultTakeLimit: 6571527,
     officeSafeMax: 100000
 }
 
@@ -2318,19 +2318,19 @@ function calculateTake()
 
     if (singleBagLoad) //might be undefined when no primary selected, we don't want 'undefined' in settings
     {
-        if (settings.islandCash > 0 || settings.compoundCash > 0 || !settings.defaultLootPrice)
+        if ((settings.compoundCash > 0 || settings.islandCash > 0) && !settings.defaultLootPrice)
             calculateCashValue(singleBagLoad);
 
-        if (settings.islandCoke > 0 || settings.compoundCoke > 0 || !settings.defaultLootPrice)
+        if ((settings.compoundCoke > 0 || settings.islandCoke > 0) && !settings.defaultLootPrice)
             calculateCokeValue(singleBagLoad);
 
-        if (settings.islandGold > 0 || settings.compoundGold > 0 || !settings.defaultLootPrice)
+        if ((settings.compoundGold > 0 || settings.islandGold > 0) && !settings.defaultLootPrice)
             calculateGoldValue(singleBagLoad);
 
-        if (settings.compoundPainting > 0 || settings.compoundPainting > 0 || !settings.defaultLootPrice)
+        if (settings.compoundPainting > 0 || !settings.defaultLootPrice)
             calculatePaintingValue(singleBagLoad);
 
-        if (settings.islandWeed > 0 || settings.compoundWeed > 0 || !settings.defaultLootPrice)
+        if ((settings.compoundWeed > 0 || settings.islandWeed > 0) && !settings.defaultLootPrice)
             calculateWeedValue(singleBagLoad);
     }
 
@@ -2765,77 +2765,50 @@ function generateStattext()
     /* SECONDARY LOOT LOCATIONS AND SCOPES */
 
     //CASH
-    if (settings.islandCash > 0)
-    {
-        s.push("$MPx_H4LOOT_CASH_I");
-        s.push(settings.islandCash.toString());
-        s.push("$MPx_H4LOOT_CASH_I_SCOPED");
-        s.push(settings.islandCash.toString());
-    }
-    if (settings.compoundCash > 0)
-    {
-        s.push("$MPx_H4LOOT_CASH_C");
-        s.push(settings.compoundCash.toString());
-        s.push("$MPx_H4LOOT_CASH_C_SCOPED");
-        s.push(settings.compoundCash.toString());
-    }
+    s.push("$MPx_H4LOOT_CASH_I");
+    s.push(settings.islandCash.toString());
+    s.push("$MPx_H4LOOT_CASH_I_SCOPED");
+    s.push(settings.islandCash.toString());
+    s.push("$MPx_H4LOOT_CASH_C");
+    s.push(settings.compoundCash.toString());
+    s.push("$MPx_H4LOOT_CASH_C_SCOPED");
+    s.push(settings.compoundCash.toString());
 
     //COKE
-    if (settings.islandCoke > 0)
-    {
-        s.push("$MPx_H4LOOT_COKE_I");
-        s.push(settings.islandCoke.toString());
-        s.push("$MPx_H4LOOT_COKE_I_SCOPED");
-        s.push(settings.islandCoke.toString());
-    }
-    if (settings.compoundCoke > 0)
-    {
-        s.push("$MPx_H4LOOT_COKE_C");
-        s.push(settings.compoundCoke.toString());
-        s.push("$MPx_H4LOOT_COKE_C_SCOPED");
-        s.push(settings.compoundCoke.toString());
-    }
+    s.push("$MPx_H4LOOT_COKE_I");
+    s.push(settings.islandCoke.toString());
+    s.push("$MPx_H4LOOT_COKE_I_SCOPED");
+    s.push(settings.islandCoke.toString());
+    s.push("$MPx_H4LOOT_COKE_C");
+    s.push(settings.compoundCoke.toString());
+    s.push("$MPx_H4LOOT_COKE_C_SCOPED");
+    s.push(settings.compoundCoke.toString());
 
     //GOLD
-    if (settings.islandGold > 0)
-    {
-        s.push("$MPx_H4LOOT_GOLD_I");
-        s.push(settings.islandGold.toString());
-        s.push("$MPx_H4LOOT_GOLD_I_SCOPED");
-        s.push(settings.islandGold.toString());
-    }
-    if (settings.compoundGold > 0)
-    {
-        s.push("$MPx_H4LOOT_GOLD_C");
-        s.push(settings.compoundGold.toString());
-        s.push("$MPx_H4LOOT_GOLD_C_SCOPED");
-        s.push(settings.compoundGold.toString());
-    }
+    s.push("$MPx_H4LOOT_GOLD_I");
+    s.push(settings.islandGold.toString());
+    s.push("$MPx_H4LOOT_GOLD_I_SCOPED");
+    s.push(settings.islandGold.toString());
+    s.push("$MPx_H4LOOT_GOLD_C");
+    s.push(settings.compoundGold.toString());
+    s.push("$MPx_H4LOOT_GOLD_C_SCOPED");
+    s.push(settings.compoundGold.toString());
 
     //WEED
-    if (settings.islandWeed > 0)
-    {
-        s.push("$MPx_H4LOOT_WEED_I");
-        s.push(settings.islandWeed.toString());
-        s.push("$MPx_H4LOOT_WEED_I_SCOPED");
-        s.push(settings.islandWeed.toString());
-    }
-    if (settings.compoundWeed > 0)
-    {
-        s.push("$MPx_H4LOOT_WEED_C");
-        s.push(settings.compoundWeed.toString());
-        s.push("$MPx_H4LOOT_WEED_C_SCOPED");
-        s.push(settings.compoundWeed.toString());
-    }
+    s.push("$MPx_H4LOOT_WEED_I");
+    s.push(settings.islandWeed.toString());
+    s.push("$MPx_H4LOOT_WEED_I_SCOPED");
+    s.push(settings.islandWeed.toString());
+    s.push("$MPx_H4LOOT_WEED_C");
+    s.push(settings.compoundWeed.toString());
+    s.push("$MPx_H4LOOT_WEED_C_SCOPED");
+    s.push(settings.compoundWeed.toString());
 
     //PAINTING
-    if (settings.compoundPainting > 0)
-    {
-        s.push("$MPx_H4LOOT_PAINT");
-        s.push(settings.compoundPainting.toString());
-        s.push("$MPx_H4LOOT_PAINT_SCOPED");
-        s.push(settings.compoundPainting.toString());
-    }
+    s.push("$MPx_H4LOOT_PAINT");
+    s.push(settings.compoundPainting.toString());
+    s.push("$MPx_H4LOOT_PAINT_SCOPED");
+    s.push(settings.compoundPainting.toString());
 
     //set cash value
     if (settings.defaultLootPrice == false)
