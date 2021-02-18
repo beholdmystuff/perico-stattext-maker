@@ -1513,7 +1513,8 @@ let cayo =
     npcCutPercentage: 12,
     hardModeMultiplier: 1.1,
     defaultCutLimit: 2550000,
-    defaultTakeLimit: 6571527,
+    normalModeTakeLimit: 6662960,
+    hardModeTakeLimit: 10818212,
     officeSafeMax: 100000
 }
 
@@ -1553,6 +1554,9 @@ function toggleHardMode(event)
     {
         button.className = "hardOn";
         settings.difficulty = "hard";
+        takeLimit.value = cayo.hardModeTakeLimit;
+        formatTakeLimit(takeLimit);
+
         if (Number.isInteger(settings.primary.price))
             primaryValue.value = (settings.primary.price * cayo.hardModeMultiplier).toLocaleString()
     }
@@ -1560,6 +1564,9 @@ function toggleHardMode(event)
     {
         button.className = "hardOff";
         settings.difficulty = "normal";
+        takeLimit.value = cayo.normalModeTakeLimit;
+        formatTakeLimit(takeLimit);
+
         if (Number.isInteger(settings.primary.price))
             primaryValue.value = (settings.primary.price).toLocaleString()
     }
@@ -2466,7 +2473,7 @@ function updateTakeLimit(event)
 }
 let takeLimit = document.querySelector("#takeLimit");
 takeLimit.addEventListener("input", updateTakeLimit);
-takeLimit.value = cayo.defaultTakeLimit;
+takeLimit.value = cayo.normalModeTakeLimit;
 formatTakeLimit(takeLimit);
 
 /* beware of copy-paste monster*/
