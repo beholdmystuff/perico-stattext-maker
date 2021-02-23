@@ -1137,6 +1137,15 @@ body
     background-color: #ff9800b0;
     font-size: 1.7vw;
 }
+.calculatorAssumption
+{
+    top: 40.1vw;
+    right: 42vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
 .moneyDisplay
 {
     top: 40.9vw;
@@ -1243,6 +1252,7 @@ body
         <div class="selectPrimary arrowLeft">Click to open loot selector, click to select primary loot.</div>
         <div class="moneyDisplay arrowLeft">Your calculated heist take will be displayed here.</div>
         <div class="selectDifficulty arrowRight">Toggle Normal or Hard Mode with this button.</div>
+        <div class="calculatorAssumption">Calculator assumes every player</br>will 100% fill their bag with loot.</div>
         <div class="statTextOperations arrowLeft">Export your stat.txt and place it next to gtahaxui.exe.</div>
         <div id="overlayClickZone"></div>
     </div>
@@ -1479,7 +1489,7 @@ body
     </div>
 
     <!-- DISABLE CUSTOM VALUES -->
-    <div id="defaultLootPlacement" class="usingCustomPrices">Using Custom Prices</div>
+    <div id="defaultLootPlacement" class="usingCustomPrices">Use Default Prices</div>
 
     <!-- HARD MODE INDICATOR -->
     <div id="hardModeButton" class="hardOff"></div>
@@ -1583,7 +1593,7 @@ function toggleDefaultMoney(event)
         target.classList.remove("usingOriginalPrices");
         target.classList.add("usingCustomPrices");
         settings.defaultLootPrice = false;
-        target.textContent = "Using Custom Prices";
+        target.textContent = "Use Default Prices";
 
         // show custom price elements
         document.querySelector("#playerCutContainer").classList.remove("hidden");
@@ -1596,7 +1606,7 @@ function toggleDefaultMoney(event)
         target.classList.remove("usingCustomPrices");
         target.classList.add("usingOriginalPrices");
         settings.defaultLootPrice = true;
-        target.textContent = "Using Game's Prices";
+        target.textContent = "Use Custom Prices";
 
         // remove custom price elements
         document.querySelector("#playerCutContainer").classList.add("hidden");
@@ -1891,7 +1901,7 @@ function markDisruption(event)
         else
             settings.pois += 1 << parseInt(bit);
     }
-    console.log(event.target.id);
+    // console.log(event.target.id);
 }
 document.querySelectorAll("#disruptionContainer .setupCategory").forEach(function(disruption)
 {
@@ -2285,12 +2295,10 @@ function calculateTake()
     let topPlayerTake = calculateTopPlayerTake();
 
     //calculate full take based on highest percentage
-    let fullTake = Math.floor(reversePercentage(settings.cutLimit || cayo.defaultCutLimit, 100 - topPlayerTake));
+    let fullTake = Math.floor(reversePercentage(settings.cutLimit, 100 - topPlayerTake));
 
-    //exceeding limits is bad
-    let scoreLimit = (settings.takeLimit || cayo.defaultTakeLimit);
-    if (fullTake > scoreLimit)
-        fullTake = scoreLimit;
+    if (fullTake > settings.takeLimit)
+        fullTake = settings.takeLimit;
 
     //add pavel cut for total money
     let score = Math.floor(reversePercentage(fullTake, cayo.npcCutPercentage));
@@ -2334,7 +2342,7 @@ function calculateTake()
         if ((settings.compoundGold > 0 || settings.islandGold > 0) && !settings.defaultLootPrice)
             calculateGoldValue(singleBagLoad);
 
-        if (settings.compoundPainting > 0 || !settings.defaultLootPrice)
+        if (settings.compoundPainting > 0 && !settings.defaultLootPrice)
             calculatePaintingValue(singleBagLoad);
 
         if ((settings.compoundWeed > 0 || settings.islandWeed > 0) && !settings.defaultLootPrice)
@@ -2369,18 +2377,18 @@ function calculateTake()
 
     document.querySelector("#totalCut").textContent = formatNumber(fullTake.toString()).string;
 
-    //don't want to need this anymore but i might
-    console.log("single bag load", singleBagLoad);
-    // console.log("rubios office safe max", safeMax);
-    console.log("max take", settings.cutLimit || cayo.defaultCutLimit);
-    console.log("top player take", topPlayerTake);
-    console.log("full take", fullTake);
-    console.log("score", score);
-    console.log("primary price", primaryPrice);
-    // console.log("primary minus pavel", primaryMinusPavel);
-    console.log("score minus primary", scoreMinusPrimary);
-    console.log("gold value", settings.goldValue);
-    console.log("painting value", settings.paintingValue);
+    // //don't want to need this anymore but i might
+    // console.log("single bag load", singleBagLoad);
+    // // console.log("rubios office safe max", safeMax);
+    // console.log("max take", settings.cutLimit || cayo.defaultCutLimit);
+    // console.log("top player take", topPlayerTake);
+    // console.log("full take", fullTake);
+    // console.log("score", score);
+    // console.log("primary price", primaryPrice);
+    // // console.log("primary minus pavel", primaryMinusPavel);
+    // console.log("score minus primary", scoreMinusPrimary);
+    // console.log("gold value", settings.goldValue);
+    // console.log("painting value", settings.paintingValue);
 }
 
 /* set team size*/
@@ -2468,7 +2476,7 @@ function formatTakeLimit(element)
 }
 function updateTakeLimit(event)
 {
-    formatCutLimit(event.target);
+    formatTakeLimit(event.target);
     calculateTake();
 }
 let takeLimit = document.querySelector("#takeLimit");
