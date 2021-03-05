@@ -1794,6 +1794,9 @@ function zoom(factor)
 
 function wheelZoom(event)
 {
+    if (!event.shiftKey)
+        return;
+        
     scale += (event.deltaY * -0.001);
     zoom(scale);
 }
