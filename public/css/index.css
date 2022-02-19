@@ -1,0 +1,1273 @@
+body
+{
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    overflow: hidden;
+    transition: transform 0.1s ease-in-out;
+}
+#main
+{
+    width: 100vw;
+    height: 56.25vw;
+    background-image: url(img/main.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+}
+
+/* HARD MODE TOGGLE BUTTONS */
+#hardModeButton
+{
+    background-repeat: no-repeat;
+    width: 20.2vw;
+    height: 3.8vw;
+    position: absolute;
+    top: 47.05vw;
+    left: 71vw;
+    cursor: url(img/cursor.png) 10 2,pointer;
+    background-size: 100% 100%;
+
+}
+.hardOn
+{
+    background-image: url(img/hard_mode_on.png);
+}
+.hardOff
+{
+    background-image: url(img/hard_mode_off.png);
+
+}
+/* PRIMARY LOOT SELECTOR */
+#lootFrame
+{
+    z-index: 2;
+    top: 32vw;
+    left: 6.75vw;
+    width: 27.35vw;
+    height: 14.7vw;
+    background-image: url(img/loot_frame.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    cursor: url(img/cursor.png) 10 2,pointer;
+    overflow: hidden;
+}
+#lootPic
+{
+    z-index: 0;
+    top: 32.1vw;
+    left: 7.1vw;
+    width: 26.75vw;
+    height: 14.5vw;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+}
+#lootName
+{
+    top: 46.7vw;
+    left: 7vw;
+    width: 26.7vw;
+    height: 3.5vw;
+    text-align: center;
+    display: block;
+    color: transparent;
+    text-shadow: 0 0 0.1vw rgb(228 89 88);
+    font-size: 1.8vw;
+    position: absolute;
+    line-height: 200%;
+    user-select: none;
+}
+#lootSelector
+{
+    top: 10%;
+    left: 3.5%;
+    width: 95%;
+    height: 95%;
+    position: absolute;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+}
+#lootSelector:hover .lootObject
+{
+    z-index: 0;
+    width: 15%;
+    transition: width 0.05s linear, background-size 0.05s linear;
+}
+#lootSelector:hover .lootObject:last-child
+{
+    z-index: 1 !important;
+    width: 65% !important;
+    transform: perspective(0) rotateY(0deg);
+}
+.lootDefault { background-image: url(img/primary_loot/default.gif); }
+.lootTequilla { background-image: url(img/primary_loot/tequilla.png); }
+.lootNecklace { background-image: url(img/primary_loot/necklace.png); }
+.lootBonds { background-image: url(img/primary_loot/bonds.png); }
+.lootDiamond { background-image: url(img/primary_loot/diamond.png); }
+.lootPanther { background-image: url(img/primary_loot/panther.png); }
+.lootFiles { background-image: url(img/primary_loot/files.png); }
+.lootObject
+{
+    z-index: 0;
+    transform: perspective(500px) rotateY(35deg);
+    width: 24%;
+    height: 81%;
+    background-repeat: no-repeat;
+    background-position: 40% 50%;
+    background-size: 200% 200%;
+    border: 0.55vw solid #f0eeef9c;
+    border-radius: 2px;
+    display: inline-block;
+    margin-right: -15%;
+    cursor: url(img/cursor.png) 10 2,pointer;
+    margin-bottom: 3%;
+}
+.lootObject:hover
+{
+    z-index: 1 !important;
+    border-color: #f0ec809c !important;
+    width: 65% !important;
+    background-size: 100% 100%;
+    /* height: 65%; */
+    transform: perspective(0) rotateY(0deg);
+}
+
+/*  GENERAL HIDDEN CLASS */
+.hidden
+{
+    display: none;
+}
+
+/* PRIMARY VALUE */
+#moneyLimits
+{
+    background-image: url(img/prices_frames.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    width: 14.9vw;
+    height: 17.9vw;
+    top: 4.7vw;
+    right: 7.7vw;
+}
+#primaryName
+{
+    position: absolute;
+    width: 14.7vw;
+    height: 2.3vw;
+    text-align: center;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #411c1be6;
+    font-size: 1.4vw;
+    line-height: 1.9vw;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    user-select: none;
+}
+#primaryValue
+{
+    position: absolute;
+    width: 14.7vw;
+    height: 2.8vw;
+    top: 2.1vw;
+    text-align: center;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #ffffffab;
+    font-size: 1.4vw;
+    line-height: 2.5vw;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    user-select: none;
+}
+
+/* HEIST SETUP OPTIONS */
+#setupContainer
+{
+    position: absolute;
+    width: 26.5vw;
+    height: 25.3vw;
+    top: 5.6vw;
+    left: 7.5vw;
+    border: 0px solid #ffffffab;
+}
+.setupCategory
+{
+    height: 3vw;
+    background-image: url(img/element.png);
+    background-size: 100% 110%;
+    padding-left: 0.5vw;
+    cursor: url(img/cursor.png) 10 2,pointer;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #ffffffab;
+    padding-top: 0px;
+    margin-bottom: 0.3vw;
+    position: relative;
+}
+.setupCategory:hover
+{
+    background-color: #ffffffab;
+    text-shadow: 0 0 0.1vw #000;
+    transition: background-color 0.5s linear;
+}
+.setupCategory span
+{
+    color: inherit;
+    text-shadow: inherit;
+    padding-left: 1.8vw;
+    font-size: 1.5vw;
+    line-height: 3vw;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    user-select: none;
+    pointer-events: none;
+}
+.backButton
+{
+    cursor: url(img/cursor.png) 10 2,pointer;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #ffffffab;
+    height: 3vw;
+    font-size: 1.5vw;
+    line-height: 3vw;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    user-select: none;
+}
+.checkbox
+{
+    width: 6%;
+    height: 60%;
+    position: absolute;
+    top: 20%;
+    display: inline-flex;
+    margin: 0;
+    line-height: 4vh;
+    pointer-events: none;
+}
+.checked
+{
+    background-image: url(img/checked.png);
+    background-size: 100% 100%;
+}
+.teamSize
+{
+    text-align: center;
+}
+.playerCut, .teamSize
+{
+    background-color: transparent;
+    outline: none;
+    border: 0px;
+    color: #827d7d;
+    font-size: 1.4vw;
+    width: 4vw;
+    right: 5%;
+    position: absolute;
+    top: 0.8vw;
+    border-radius: 25%;
+}
+.setupCategory:hover .playerCut, .setupCategory:hover .teamSize
+{
+    color: black;
+}
+
+/* CUSTOM MONEY LIMIT CLASSES */
+.moneyLimitLabel
+{
+    position: absolute;
+    width: 14.7vw;
+    height: 2.3vw;
+    text-align: center;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #411c1be6;
+    font-size: 1.4vw;
+    line-height: 1.9vw;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+}
+.moneyLimit
+{
+    position: absolute;
+    width: 14.7vw;
+    height: 2.8vw;
+    text-align: center;
+    color: transparent;
+    text-shadow: 0 0 1.5px #f0eeef9c;
+    font-size: 1.4vw;
+    line-height: 3.4vh;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    background-color: transparent;
+    border: 0px;
+    outline: none;
+    caret-color: #f0eeef9c;
+}
+#cutLimitLabel
+{
+    top: 12.9vw;
+    user-select: none;
+}
+#cutLimit
+{
+    top: 14.9vw;
+}
+#takeLimitLabel
+{
+    top: 6.4vw;
+    user-select: none;
+}
+#takeLimit
+{
+    top: 8.5vw;
+}
+.error
+{
+    animation: errorFont 1s infinite;
+}
+@keyframes errorFont
+{
+  0% { text-shadow: 0 0 1.5px #f0eeef9c; }
+  50% { text-shadow: 0 0 1.5px #411c1be6; }
+  100% { text-shadow: 0 0 1.5px #f0eeef9c; }
+}
+
+/* TRUCK LOCATION SELECTOR */
+.truckIcon
+{
+    background-image: url(img/truck_off.png);
+    background-size: 100% 100%;
+    width: 1.4vw;
+    height: 1.7vw;
+    position: absolute;
+    cursor: url(img/cursor.png) 10 2,pointer;
+}
+.truckOn
+{
+    background-image: url(img/truck_on.png);
+}
+#truck1
+{
+    top: 11vw;
+    left: 56.4vw;
+}
+#truck2
+{
+    top: 13.2vw;
+    left: 71vw;
+}
+#truck3
+{
+    top: 24.6vw;
+    left: 71.5vw;
+}
+#truck4
+{
+    top: 26.6vw;
+    left: 66.3vw;
+}
+#truck5
+{
+    top: 38.6vw;
+    left: 66.5vw;
+}
+
+/* GRAPPLING HOOK LOCATION SELECTOR*/
+.hookIcon
+{
+    background-image: url(img/grappling_hook_off.png);
+    background-size: 100% 100%;
+    width: 1.7vw;
+    height: 1.7vw;
+    position: absolute;
+    cursor: url(img/cursor.png) 10 2,pointer;
+}
+.hookOn
+{
+    background-image: url(img/grappling_hook_on.png);
+}
+#hook1
+{
+    top: 15.9vw;
+    left: 55.4vw;
+}
+#hook2
+{
+    top: 13.2vw;
+    left: 68.9vw;
+}
+#hook3
+{
+    top: 26.5vw;
+    left: 70vw;
+}
+#hook4
+{
+    top: 26.5vw;
+    left: 80.5vw;
+}
+
+/* OUTFITS LOCATION SELECTOR */
+.clothesIcon
+{
+    background-image: url(img/clothes_off.png);
+    background-size: 100% 100%;
+    width: 1.7vw;
+    height: 1.7vw;
+    position: absolute;
+    cursor: url(img/cursor.png) 10 2,pointer;
+}
+.clothesOn
+{
+    background-image: url(img/clothes_on.png);
+}
+#clothes1
+{
+    top: 12.3vw;
+    left: 54.4vw;
+}
+#clothes2
+{
+    top: 11.4vw;
+    left: 69.9vw;
+}
+#clothes3
+{
+    top: 29vw;
+    left: 65.7vw;
+}
+#clothes4
+{
+    top: 32.8vw;
+    left: 64.5vw;
+}
+
+/* CUTTERS LOCATION SELECTOR */
+.cuttersIcon
+{
+    background-image: url(img/bolt_cutters_off.png);
+    background-size: 100% 100%;
+    width: 1.7vw;
+    height: 1.7vw;
+    position: absolute;
+    cursor: url(img/cursor.png) 10 2,pointer;
+}
+.cuttersOn
+{
+    background-image: url(img/bolt_cutters_on.png);
+}
+#cutters1
+{
+    top: 13.3vw;
+    left: 56.4vw;
+}
+#cutters2
+{
+    top: 15.1vw;
+    left: 71.2vw;
+}
+#cutters3
+{
+    top: 24.4vw;
+    left: 66.7vw;
+}
+#cutters4
+{
+    top: 32.5vw;
+    left: 75.7vw;
+}
+
+/* PLAYER MONEY DISPLAY */
+#playerCutContainer
+{
+    background-image: url(img/player_cuts.png);
+    background-size: 100% 100%;
+    width: 23vw;
+    height: 10vw;
+    position: absolute;
+    top: 38vw;
+    left: 36vw;
+}
+#totalCut
+{
+    position: absolute;
+    top: 10vw;
+    right: 2vw;
+    color: transparent;
+    text-shadow: 0 0 1.5px #f0eeef9c;
+    font-size: 1.5vw;
+    line-height: 2.8vw;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    user-select: none;
+}
+.playerMoney
+{
+    color: transparent;
+    text-shadow: 0 0 0.1vw #ffffffab;
+    padding-left: 1.8vw;
+    font-size: 1.5vw;
+    line-height: 2.4vw;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    user-select: none;
+    pointer-events: none;
+    position: relative;
+}
+.playerMoney span:last-child
+{
+    right: 2vw;
+    position: absolute;
+    top: 0.2vw;
+}
+
+/* STAT.TXT EXPORT BUTTONS */
+#stattextContainer
+{
+    top: 4vw;
+    left: 36.4vw;
+    position: absolute;
+    user-select: none;
+}
+#stattextContainer div
+{
+    display: inline-block;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #e45958ab;
+    padding-left: 1.8vw;
+    font-size: 1.5vw;
+    line-height: 2vw;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    text-align: center;
+    padding: 0 0vw 0.25vw 1vw;
+}
+.statTextButton
+{
+    border: 0.2vw solid #8e3232;
+    border-radius: 0.2vw;
+    cursor: url(img/cursor.png) 10 2,pointer;
+    background-color: #1e1516c2;
+}
+.statTextButton:after
+{
+    top: -0.9vw;
+    right: -0.1vw;
+    position: relative;
+    content: "✔";
+    pointer-events: none;
+    opacity: 0;
+    font-size: 1.5vw;
+}
+.appear:after
+{
+    opacity: 1;
+}
+.fadeOut:after
+{
+    transition: opacity 3s ease-in;
+}
+
+/* STAT.TXT TEXTAREA FOR COPY OPTION */
+.invisibleTextarea
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 2em;
+    height: 2em;
+    z-index: -1;
+}
+
+/* STAT.TXT SOURCE VIEWER */
+.statTextViewer
+{
+    position: absolute;
+    top: 2.5vw;
+    left: 25vw;
+    width: 50vw;
+    height: 50vw;
+    background-color: black;
+    color: #f0eeef9c;
+    white-space: pre-wrap;
+    z-index: 3;
+    border: 0.3vw solid #aa4241bd;
+    overflow-y: scroll;
+    padding: 2vw;
+    line-height: 1.5vw;
+    font-size: 1vw;
+}
+.textViewOverlay
+{
+    background-color: #00000077;
+    z-index: 2;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    cursor: url(img/cursor.png) 10 2,pointer;
+}
+
+/* EL RUBIO SAFE EXCLUSION CHECKBOX */
+#elRubioSafe
+{
+    position: absolute;
+    font-size: 1.5vw;
+    top: 12.9vw;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #411c1be6;
+    padding-left: 1vw;
+    right: 1.1vw;
+    cursor: url(img/cursor.png) 10 2,pointer;
+    user-select: none;
+}
+
+/* COMPOUND LAYER */
+#compoundSettings
+{
+    position: absolute;
+    top: 3.6vw;
+    left: 34.9vw;
+    width: 58.4vw;
+    height: 47.3vw;
+    transition: clip-path 0.5s linear;
+}
+
+/* COMPOUND MAP CLIPPING */
+.compoundExpanded
+{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+.compoundContracted
+{
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+}
+.compoundHidden
+{
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+}
+#compoundMap
+{
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    background-image: url(img/compound_map.png);
+    background-size: 100% 100%;
+}
+
+/* GENERAL LOOT SPOT ICON*/
+.lootSpot
+{
+    border: 0.2vw solid #8c3d40;
+    border-radius: 50%;
+    width: 1.5vw;
+    height: 1.5vw;
+    display: block;
+    position: absolute;
+    font-size: 1.2vw;
+    line-height: 1.5vw;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #8c3d40;
+    text-align: center;
+    background-color: #1a1414de;
+    cursor: url(img/cursor.png) 10 2,pointer;
+    user-select: none;
+}
+.lootSpot:before
+{
+    top: 0.1vw;
+    position: relative;
+}
+
+/* ISLAND SECONDARY LOOT LOCATIONS */
+#hangarTopA
+{
+    top: 7vw;
+    left: 56vw;
+}
+#hangarTopB
+{
+    top: 9vw;
+    left: 56vw;
+}
+#hangarLowA
+{
+    top: 9.5vw;
+    left: 51.6vw;
+}
+#hangarLowB
+{
+    top: 9.5vw;
+    left: 53.7vw;
+}
+#airstripA
+{
+    top: 12.3vw;
+    left: 58vw;;
+}
+#airstripB
+{
+    top: 12.3vw;
+    left: 60vw;
+}
+#northDockLongShedA
+{
+    top: 11.1vw;
+    left: 65.6vw;
+}
+#northDockLongShedB
+{
+    top: 11.1vw;
+    left: 67.7vw;
+}
+#northDockLockedShedA
+{
+    top: 15.5vw;
+    left: 68.8vw;
+}
+#northDockLockedShedB
+{
+    top: 17.3vw;
+    left: 67.5vw;
+}
+#northDockLockedShedC
+{
+    top: 17.5vw;
+    left: 69.6vw;
+}
+#northDockShedA
+{
+    top: 11.3vw;
+    left: 71.9vw;
+}
+#northDockShedB
+{
+    top: 11.3vw;
+    left: 74.1vw;
+}
+#weedFarmA
+{
+    top: 29.3vw;
+    left: 76.1vw;
+}
+#weedFarmB
+{
+    top: 27.7vw;
+    left: 74.7vw;
+}
+#centralShedA
+{
+    top: 26.6vw;
+    left: 72vw;
+}
+#centralShedB
+{
+    top: 28.7vw;
+    left: 72vw;
+}
+#mainDockEastShedA
+{
+    top: 26.4vw;
+    left: 68vw;
+}
+#mainDockEastShedB
+{
+    top: 28.5vw;
+    left: 68vw;
+}
+#mainDockLargeShedA
+{
+    top: 24vw;
+    left: 64.7vw;
+}
+#mainDockLargeShedB
+{
+    top: 22.3vw;
+    left: 66.1vw;
+}
+#mainDockLargeShedC
+{
+    top: 23.2vw;
+    left: 68.2vw;
+}
+#mainDockWestShedA
+{
+    top: 27.8vw;
+    left: 63.9vw;
+}
+#mainDockWestShedB
+{
+    top: 27.8vw;
+    left: 61.8vw;
+}
+
+/* COMPUND SECONDARY LOOT SPOTS */
+#northA
+{
+    top: 28.4vw;
+    left: 45.1vw;
+}
+#northB
+{
+    top: 30.7vw;
+    left: 45.1vw;
+}
+#centralA
+{
+    top: 20.5vw;
+    left: 32.3vw;
+}
+#centralB
+{
+    top: 22.7vw;
+    left: 32.3vw;
+}
+#southA
+{
+    top: 34vw;
+    left: 24.2vw;
+}
+#southB
+{
+    top: 34vw;
+    left: 22vw;
+}
+#basementA
+{
+    top: 22.5vw;
+    left: 22vw;
+}
+#basementB
+{
+    top: 22.5vw;
+    left: 19.8vw;
+}
+/* SECONDARY LOOT MARKERS */
+.lootOn  {
+    /* Coming Soon? */
+}
+.contentCash:before
+{
+    content: "$";
+}
+.contentCoke:before
+{
+    content: "C";
+}
+.contentGold:before
+{
+    content: "G";
+}
+.contentWeed:before
+{
+    content: "W";
+}
+.paintingOn:before
+{
+    content: "P";
+}
+.paintingSpot
+{
+    border: 0.2vw solid #8c3d40;
+    width: 1.5vw;
+    height: 1.8vw;
+    display: block;
+    position: absolute;
+    font-size: 1.2vw;
+    line-height: 2vw;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #8c3d40;
+    text-align: center;
+    background-color: #1a1414de;
+    cursor: url(img/cursor.png) 10 2,pointer;
+    user-select: none;
+}
+/* COMPOUND PAITING SPOTS */
+#paintingNorth
+{
+    top: 29.6vw;
+    left: 42.7vw;
+}
+#paintingCentral
+{
+    top: 21.5vw;
+    left: 30.1vw;
+}
+#paintingSouth
+{
+    top: 36.1vw;
+    left: 23.1vw;
+}
+#paintingOfficeA
+{
+    top: 23.6vw;
+    left: 26.1vw;
+}
+#paintingOfficeB
+{
+    top: 25vw;
+    left: 23.9vw;
+}
+#paintingBasementA
+{
+    top: 20vw;
+    left: 22vw;
+}
+#paintingBasementB
+{
+    top: 20vw;
+    left: 19.8vw;
+}
+/* GTA STYLE MAP TOGGLE BUTTON */
+#mapButton
+{
+    background-image: url(img/map_button.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 48.9vw;
+    left: 62.2vw;
+    width: 5.4vw;
+    height: 2.1vw;
+    cursor: url(img/cursor.png) 10 2,pointer;
+    z-index: 1;
+}
+
+/* LOOT SELECTOR "CONTEXT" MENU */
+.secondaryLootSelector
+{
+    position: absolute;
+    top: 10vw;
+    left: 10vw;
+    width: 10vw;
+    z-index: 4;
+}
+.secondaryLootSelector
+{
+    position: absolute;
+    top: 10vw;
+    left: 10vw;
+    width: 10vw;
+    z-index: 4;
+}
+.lootOption
+{
+    background-color: #1d1415;
+    cursor: url(img/cursor.png) 10 2,pointer;
+    border: 0.3vw solid #832929;
+    user-select: none;
+}
+.lootOption span
+{
+    position: relative;
+    top: -0.3vw;
+    padding-left: 2vw;
+    height: 2vw;
+    font-size: 1.5vw;
+    line-height: 2.5vw;
+    color: transparent;
+    text-shadow: 0 0 0.1vw #ffffffab;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    pointer-events: none;
+}
+.lootOption::before
+{
+    border-radius: 50%;
+    position: relative;
+    left: 0.7vw;
+    top: 0.3vw;
+    border: 0.3vw solid #832929;
+    content: "";
+    display: inline-block;
+    height: 1.5vw;
+    width: 1.5vw;
+}
+.lootOption:hover
+{
+    background-color: #ffffffab;
+    text-shadow: 0 0 0.1vw #000;
+    transition: background-color 0.5s linear;
+}
+.lootOptionSeparator
+{
+    border: 1px dotted #832929;
+    margin: 0.5vw 0vw 0.5vw 0vw;
+}
+.cashOption::before
+{
+    background-color: #525b54;
+}
+.cokeOption::before
+{
+    background-color: white;
+}
+.goldOption::before
+{
+    background-color: gold;
+}
+.weedOption::before
+{
+    background-color: green;
+}
+.emptyOption::before
+{
+    background-color: transparent;
+}
+#defaultLootPlacement
+{
+    position: absolute;
+    right: 9.1vw;
+    top: 43.5vw;
+    width: 17vw;
+    display: inline-block;
+    color: transparent;
+    padding-left: 1.8vw;
+    font-size: 1.4vw;
+    line-height: 2vw;
+    font-variant: all-small-caps;
+    font-family: system-ui;
+    text-align: center;
+    padding: 0 1vw 0.25vw 1vw;
+    border: 0.3vw solid #8e3232;
+    border-radius: 0.2vw;
+    cursor: url(img/cursor.png) 10 2,pointer;
+    user-select: none;
+}
+.usingCustomPrices
+{
+    text-shadow: 0 0 0.1vw #e45958ab;
+    background-color: #1e1516c2;
+}
+.usingOriginalPrices
+{
+    text-shadow: 0 0 0.1vw #d05757;
+    background-color: #451b1c;
+}
+/* INVISIBLE OVERLAY TO CLOSE CONTEXT MENU WHEN CLICKING ANYWHERE ELSE */
+.secondarySelectorOverlay
+{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 3;
+    user-select: none;
+}
+
+/* TUTORIAL OVERLAY STYLES */
+#overlay
+{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 3;
+    background-color: #00000077;
+    transition: opacity 0.5s linear;
+    user-select: none;
+}
+#overlay div
+{
+    padding: 0.5vw 1vw 0.5vw 1vw
+}
+#overlayClickZone
+{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    cursor: url(img/cursor.png) 10 2,pointer;
+}
+.arrowLeft:before
+{
+    border-color: #ff9800b0 #ff9800b0 #ff9800b0 transparent;
+    position: absolute;
+    left: -3vw;
+    top: 0.3vw;
+    content: "";
+    border-style: solid;
+    border-width: 0 0 1.5vw 2.5vw;
+}
+.arrowLeft:after
+{
+    border-color: #ff9800b0 #ff9800b0 #ff9800b0 transparent;
+    position: absolute;
+    left: -3vw;
+    top: 1.8vw;
+    content: "";
+    border-style: solid;
+    border-width: 1.5vw 0 0 2.5vw;
+}
+.arrowRight:before
+{
+    border-color: transparent transparent transparent #ff9800b0;
+    position: absolute;
+    right: -3vw;
+    top: 0.3vw;
+    content: "";
+    border-style: solid;
+    border-width: 1.5vw 0 0 2.5vw;
+}
+.arrowRight:after
+{
+    border-color: transparent transparent transparent #ff9800b0;
+    position: absolute;
+    right: -3vw;
+    top: 1.8vw;
+    content: "";
+    border-style: solid;
+    border-width: 0 0 1.5vw 2.5vw;
+}
+.selectPrimary
+{
+    top: 35vw;
+    left: 37vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.selectDifficulty
+{
+    top: 47.1vw;
+    right: 32vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.calculatorAssumption
+{
+    top: 40.1vw;
+    right: 42vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.moneyDisplay
+{
+    top: 40.9vw;
+    left: 62vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.selectTruckLocation
+{
+    top: 25.7vw;
+    left: 70.9vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.enterTakeLimit
+{
+    top: 19.3vw;
+    right: 26.1vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.enterScoreLimit
+{
+    top: 13.1vw;
+    right: 26.1vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.selectSafe
+{
+    top: 16.5vw;
+    right: 13vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.primaryDisplay
+{
+    top: 6.5vw;
+    right: 26.1vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.setHeistOptions
+{
+    top: 7.2vw;
+    left: 37.1vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.calculateCuts
+{
+    top: 19.3vw;
+    left: 37.1vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.selectLoot
+{
+    top: 29vw;
+    left: 44.2vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.zoomInOut
+{
+    top: 26vw;
+    left: 7.2vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.statTextOperations
+{
+    top: 3.7vw;
+    left: 77.5vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+.proTip
+{
+    top: 1.5vw;
+    left: 1.5vw;
+    position: absolute;
+    border-radius: 2vw;
+    background-color: #ff9800b0;
+    font-size: 1.7vw;
+}
+
+.back
+{
+    position: absolute;
+    background-image: url("img/button_back.png");
+    background-size: contain;
+    width: 4vw;
+    height: 4vw;
+    top: 28.2vw;
+    left: 4.4vw;
+    cursor: pointer;
+    pointer-events: all;
+    transition: filter 0.2s ease-in-out;
+}
+.back:hover
+{
+    filter: brightness(150%);
+}
