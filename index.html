@@ -2322,6 +2322,7 @@ function reversePercentage2(value, percent)
     return (value / percent) * 100;
 }
 
+// i did an array and now have to iterate
 function getLootSize(loot)
 {
     let size;
@@ -2955,13 +2956,36 @@ function generateStattext()
     else
         s.push("124271");
 
-    //no idea what this does, can guess by the name though
+    //mission completion
+    /*
+        vehicle         left shift
+        gather intel        0
+        Kosatka             1
+        Alkonost            2
+        Velum               3
+        Annihilator         4
+        PatrolBoat          5
+        Longfin             6
+        pilot               7
+        demolition charges  8
+        torch               9
+        cutter             10
+        fingerprint cloner 11
+        suppressors        12
+        weapon             13
+        armor              14
+        air support        15
+    */
+
     s.push("$MPx_H4_MISSIONS");
     s.push(settings.missionsBinary.toString());
 
+    //shouldnt happen
     if (settings.missionsBinary > 65535)
         console.error("Mission Binary ridiculously high:", settings.missionsBinary)
 
+    //playthrough count
+    //set 0 for cutscene
     // s.push("$MPx_H4_PLAYTHROUGH_STATUS");
     // s.push("40000");
 
