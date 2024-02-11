@@ -1921,7 +1921,7 @@ function selectWeapon(event)
     if (checkbox.classList.contains("checked"))
     {
         event.target.querySelector(".checkbox").classList.remove("checked");
-        settings.missionsBinary -= 1 << 12;
+        // settings.missionsBinary -= 1 << 12;
     }
     else
     {
@@ -1930,12 +1930,12 @@ function selectWeapon(event)
             if (weapon.querySelector(".checkbox").classList.contains("checked"))
             {
                 weapon.querySelector(".checkbox").classList.remove("checked");
-                settings.missionsBinary -= 1 << 12; //either substract the bit or use additional if below. I chose math.
+                // settings.missionsBinary -= 1 << 12; //either substract the bit or use additional if below. I chose math.
             }
         });
 
         event.target.querySelector(".checkbox").classList.add("checked");
-        settings.missionsBinary += 1 << 12;
+        //settings.missionsBinary += 1 << 12;
     }
 }
 document.querySelectorAll("#weaponContainer .setupCategory:not(#weaponSuppressors)").forEach(function(weapon)
